@@ -42,7 +42,9 @@
         .hero-card{
             background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
             border-radius:var(--radius);padding:34px;box-shadow:0 8px 30px rgba(2,6,23,0.6);
+            
         }
+        aside.hero-card{font-size:15px;line-height:1.6}
         h1{margin:0;font-size:34px;letter-spacing:-0.4px}
         .lead{color:var(--muted);margin-top:10px;font-size:15px}
         .cta{display:flex;gap:12px;margin-top:20px}
@@ -192,11 +194,12 @@
             <h2 style="margin:0 0 12px 0">Get in touch</h2>
             <div style="color:var(--muted);margin-bottom:12px">Tell us about your challenge — we'll propose a plan.</div>
             <div style="display:grid;grid-template-columns:1fr 360px;gap:18px">
-                <form class="hero-card contact-form" onsubmit="event.preventDefault();alert('Thanks — this is a demo form.');">
-                    <input class="input" type="text" placeholder="Your name" required />
-                    <input class="input" type="email" placeholder="Business email" required />
-                    <input class="input" type="text" placeholder="Company / Website" />
-                    <textarea placeholder="Brief summary of your project" required></textarea>
+                <form class="hero-card contact-form" action="https://formspree.io/f/meenywqe" method="POST">
+                    <input class="input" name="name" type="text" placeholder="Your name" required />
+                    <input class="input" name="email" type="email" placeholder="Business email" required />
+                    <input class="input" name="company" type="text" placeholder="Company / Website" />
+                    <input class="input" name="phone" type="tel" placeholder="Phone number (digits only)" pattern="[0-9]+" inputmode="numeric" title="Enter digits only" />
+                    <textarea name="message" placeholder="Brief summary of your project" required></textarea>
                     <div style="display:flex;gap:8px">
                         <button class="btn" type="submit">Request a callback</button>
                         <button class="btn ghost" type="button" onclick="location.href='#'">Schedule meeting</button>
@@ -208,7 +211,7 @@
                     <div style="color:var(--muted);font-size:13px">Technostic Group — Remote first</div>
                     <div style="margin-top:8px">
                         <div style="font-weight:700">Email</div>
-                        <div style="color:var(--muted);font-size:13px">hello@technostic.group</div>
+                        <div style="color:var(--muted);font-size:13px">hacknosticgroup@gmail.com</div>
                     </div>
                     <div style="margin-top:8px">
                         <div style="font-weight:700">Working hours</div>
@@ -224,5 +227,29 @@
         </footer>
 
     </div>
+        <script>
+            // Formspree AJAX submit handler
+            (function(){
+                const form = document.querySelector('.contact-form');
+                if(!form) return;
+                form.addEventListener('submit', async function(e){
+                    e.preventDefault();
+                    const action = form.getAttribute('action');
+                    const data = new FormData(form);
+                    try{
+                        const res = await fetch(action, {method:'POST', body:data, headers:{'Accept':'application/json'}});
+                        if(res.ok){
+                            alert('Thanks — your message has been sent.');
+                            form.reset();
+                        } else {
+                            const json = await res.json();
+                            alert((json && json.error) || 'Submission failed. Please try again.');
+                        }
+                    }catch(err){
+                        alert('Submission failed. Please try again later.');
+                    }
+                });
+            })();
+        </script>
 </body>
 </html>
