@@ -1,51 +1,248 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Services — Technostic Group</title>
-  <style>
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:24px;background:#071024;color:#e6eef8}
-    a{color:#6C63FF;text-decoration:none}
-    h1{margin-top:0}
-    .container{max-width:900px;margin:0 auto}
-    .card{background:rgba(255,255,255,0.03);padding:18px;border-radius:10px;margin-bottom:16px}
-    ul{margin:8px 0 0 20px;color:#94a3b8}
-  </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Technostic Group — Innovate. Scale. Succeed.</title>
+    <meta name="description" content="Technostic Group — Product engineering, cloud infrastructure, and data-driven growth for startups and enterprises." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --bg:#0f1724;
+            --card:#0b1220;
+            --accent:#6C63FF;
+            --muted:#94a3b8;
+            --glass: rgba(255,255,255,0.04);
+            --radius:12px;
+            color-scheme: dark;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+            background:linear-gradient(180deg,#071024 0%,#071426 50%,var(--bg) 100%);
+            color:#e6eef8;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            line-height:1.45;
+        }
+        .container{max-width:1100px;margin:0 auto;padding:28px;}
+        header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+        .brand{display:flex;gap:12px;align-items:center}
+        .logo{
+            width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3dd5c9);
+            display:flex;align-items:center;justify-content:center;font-weight:700;color:#041226;box-shadow:0 6px 20px rgba(108,99,255,0.18)
+        }
+        nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+        nav a.primary{background:linear-gradient(90deg,var(--accent),#3dd5c9);color:#041226;padding:8px 14px;border-radius:10px}
+        .hero{
+            display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0 64px;
+        }
+        .hero-card{
+            background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border-radius:var(--radius);padding:34px;box-shadow:0 8px 30px rgba(2,6,23,0.6);
+        }
+        h1{margin:0;font-size:34px;letter-spacing:-0.4px}
+        .lead{color:var(--muted);margin-top:10px;font-size:15px}
+        .cta{display:flex;gap:12px;margin-top:20px}
+        .btn{
+            padding:12px 18px;border-radius:10px;border:0;font-weight:700;cursor:pointer;
+            background:var(--accent);color:#041226;box-shadow:0 8px 24px rgba(108,99,255,0.18)
+        }
+        .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+        .stats{display:flex;gap:16px;margin-top:20px}
+        .stat{background:var(--glass);padding:10px 14px;border-radius:10px;font-weight:700;color:#dbeafe}
+        .panel{
+            border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            height:100%;
+            display:flex;flex-direction:column;
+        }
+        .cover{
+            background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=1c3c3c7b037ffd24f5f6d7f69c4a1f55');
+            background-size:cover;background-position:center;height:160px;
+            position:relative;
+        }
+        .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,20,0.15),rgba(6,10,20,0.55))}
+        .panel-body{padding:18px;display:flex;flex-direction:column;gap:10px}
+        .features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}
+        .feature{background:var(--card);padding:16px;border-radius:10px;font-size:14px}
+        .feature svg{width:22px;height:22px;vertical-align:middle;margin-right:10px}
+        .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+        .service{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:18px;border-radius:12px}
+        .team{display:flex;gap:14px;margin-top:18px}
+        .member{background:var(--card);padding:12px;border-radius:10px;display:flex;gap:12px;align-items:center}
+        .avatar{width:56px;height:56px;border-radius:10px;flex:0 0 56px;overflow:hidden}
+        .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+        footer{border-top:1px solid rgba(255,255,255,0.03);padding:20px 0;margin-top:40px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+        /* responsive */
+        @media (max-width:980px){
+            .hero{grid-template-columns:1fr;padding:20px 0}
+            .services{grid-template-columns:1fr}
+            .features{grid-template-columns:repeat(2,1fr)}
+        }
+        @media (max-width:560px){
+            .features{grid-template-columns:1fr}
+            nav a{display:none}
+            .brand{gap:8px}
+            .logo{width:44px;height:44px}
+            h1{font-size:26px}
+        }
+        .contact-form{display:flex;flex-direction:column;gap:8px}
+        .input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:inherit}
+        textarea{min-height:100px;resize:vertical}
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-      <div>
-        <h1>Services</h1>
-        <div style="color:#94a3b8">Technostic Group — Cybersecurity & Technology</div>
-      </div>
-      <div><a href="index.html">← Back to home</a></div>
-    </header>
+    <div class="container">
+        <header>
+            <div class="brand">
+                <div class="logo" aria-hidden="true">TG</div>
+                <div>
+                    <div style="font-weight:700">Technostic Group</div>
+                    <div style="font-size:13px;color:var(--muted)">Product engineering • Cloud • Data</div>
+                </div>
+            </div>
+            <nav>
+                <a href="#services">Services</a>
+                <a href="#team">Team</a>
+                <a href="#contact" class="primary">Contact</a>
+            </nav>
+        </header>
 
-    <section class="card">
-      <h2 style="margin:0 0 8px 0">Home / Personal Network Security</h2>
-      <ul>
-        <li>Wi-Fi security setup</li>
-        <li>Router hardening and configuration</li>
-        <li>Network protection for personal users</li>
-        <li>Basic vulnerability checks</li>
-        <li>Device and connection security guidance</li>
-      </ul>
-    </section>
+        <section class="hero">
+            <div class="hero-card">
+                <h1>Designing and scaling digital products that matter</h1>
+                <p class="lead">The Technostic Group is a technology and cybersecurity service provider focused on helping individuals and businesses strengthen their digital security infrastructure. The company specializes in network security, vulnerability assessment, Wi-Fi and router protection, penetration testing, and system analysis. With a practical and client-focused approach, The Technostic Group aims to deliver reliable, efficient, and modern cybersecurity solutions tailored to both personal and commercial environments.</p>
+                <div class="cta">
+                    <button class="btn">Get Started</button>
+                    <button class="btn ghost" type="button" onclick="location.href='services.html'">View Services</button>
+                </div>
+                <div class="stats" aria-hidden="true">
+                    <div class="stat">50+ Products Launched</div>
+                    <div class="stat">100M+ Monthly Users</div>
+                    <div class="stat">99.99% Uptime</div>
+                </div>
 
-    <section class="card">
-      <h2 style="margin:0 0 8px 0">Business Cybersecurity Services</h2>
-      <ul>
-        <li>Network vulnerability assessment</li>
-        <li>Penetration testing</li>
-        <li>Security auditing</li>
-        <li>Threat identification and risk analysis</li>
-        <li>Recommendations for strengthening infrastructure security</li>
-      </ul>
-    </section>
+                <div class="features" aria-hidden="true">
+                    <div class="feature"><strong>Product Strategy</strong><div style="color:var(--muted);font-size:13px;margin-top:6px">Roadmaps, discovery, validation</div></div>
+                    <div class="feature"><strong>Cloud & Infra</strong><div style="color:var(--muted);font-size:13px;margin-top:6px">Kubernetes, serverless, cost ops</div></div>
+                    <div class="feature"><strong>Data & AI</strong><div style="color:var(--muted);font-size:13px;margin-top:6px">Pipeline, analytics, ML ops</div></div>
+                </div>
 
-    <footer style="color:#94a3b8;font-size:13px;margin-top:18px">Contact: <a href="mailto:hello@technostic.group">hello@technostic.group</a></footer>
-  </div>
+            </div>
+
+            <aside class="panel" aria-label="Showcase">
+                <div class="cover"></div>
+                <div class="panel-body">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <div>
+                            <div style="font-weight:700">Trusted by fast-growing teams</div>
+                            <div style="color:var(--muted);font-size:13px;margin-top:6px">From seed to scale — end-to-end engineering and product partnerships.</div>
+                        </div>
+                        <div style="color:var(--accent);font-weight:700">Schedule a call →</div>
+                    </div>
+
+                    <div style="margin-top:8px">
+                        <div style="font-size:13px;color:var(--muted)">Recent case</div>
+                        <div style="font-weight:700;margin-top:6px">Realtime analytics for a fintech platform</div>
+                        <div style="color:var(--muted);font-size:13px;margin-top:8px">Reduced latency 4x and cut infra cost by 36% through optimized pipelines.</div>
+                    </div>
+
+                    <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+                        <div style="width:38px;height:38px;border-radius:8px;background:linear-gradient(90deg,var(--accent),#3dd5c9)"></div>
+                        <div style="font-size:13px;color:var(--muted)">View the full case study</div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <section id="services" class="container" style="padding:0">
+            <h2 style="margin:0 0 12px 0">Cybersecurity Services</h2>
+            <p style="color:var(--muted);margin:0 0 18px 0">Specialized security services for businesses and home users — protection, assessment, and response.</p>
+            <div class="services">
+                <div class="service"><div style="font-weight:700">Network Security Audits</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Comprehensive review of network architecture and controls.</div></div>
+                <div class="service"><div style="font-weight:700">Wi-Fi Security & Router Protection</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Secure wireless networks and harden home/office routers.</div></div>
+                <div class="service"><div style="font-weight:700">Vulnerability Assessment</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Automated scanning and prioritized vulnerability reporting.</div></div>
+                <div class="service"><div style="font-weight:700">Website & Server Security</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Harden web apps, servers and deployment pipelines.</div></div>
+                <div class="service"><div style="font-weight:700">Penetration Testing</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Simulated attacks to identify exploitable weaknesses.</div></div>
+                <div class="service"><div style="font-weight:700">Firewall Configuration</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Design and tune firewall rules for optimal protection.</div></div>
+                <div class="service"><div style="font-weight:700">Threat Monitoring</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Continuous detection and alerting for suspicious activity.</div></div>
+                <div class="service"><div style="font-weight:700">Digital Privacy Consulting</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Advice and controls to protect privacy and sensitive data.</div></div>
+                <div class="service"><div style="font-weight:700">Malware & Suspicious Activity Analysis</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Investigation and remediation of malicious software events.</div></div>
+                <div class="service"><div style="font-weight:700">Small Business Cybersecurity Solutions</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Affordable security packages tailored for small teams.</div></div>
+                <div class="service"><div style="font-weight:700">Home Network Protection</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Setup and guidance to secure home devices and IoT.</div></div>
+                <div class="service"><div style="font-weight:700">Remote Security Support</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Live assistance for incidents and configuration help.</div></div>
+                <div class="service"><div style="font-weight:700">Security Hardening for Systems & Devices</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Best-practice hardening for servers, desktops, and IoT.</div></div>
+                <div class="service"><div style="font-weight:700">Basic Cybersecurity Awareness Guidance</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Training and simple policies to reduce human risk.</div></div>
+            </div>
+        </section>
+
+        <section id="team" style="margin-top:8px">
+            <h2 style="margin:0 0 12px 0">Leadership & Core Team</h2>
+            <div style="color:var(--muted);margin-bottom:12px">Experienced engineers, product builders, and cloud architects.</div>
+            <div class="team">
+                <div class="member" aria-label="Team member: Alex, CEO">
+                    <div class="avatar"><img src="https://i.pravatar.cc/150?img=32" alt="Alex, CEO"></div>
+                    <div>
+                        <div style="font-weight:700">Alex Morgan</div>
+                        <div style="font-size:13px;color:var(--muted)">Founder & CEO</div>
+                    </div>
+                </div>
+
+                <div class="member" aria-label="Team member: Priya, CTO">
+                    <div class="avatar"><img src="https://i.pravatar.cc/150?img=47" alt="Priya, CTO"></div>
+                    <div>
+                        <div style="font-weight:700">Priya Rao</div>
+                        <div style="font-size:13px;color:var(--muted)">CTO</div>
+                    </div>
+                </div>
+
+                <div class="member" aria-label="Team member: Marco, Head of Product">
+                    <div class="avatar"><img src="https://i.pravatar.cc/150?img=12" alt="Marco, Head of Product"></div>
+                    <div>
+                        <div style="font-weight:700">Marco Silva</div>
+                        <div style="font-size:13px;color:var(--muted)">Head of Product</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" style="margin-top:28px">
+            <h2 style="margin:0 0 12px 0">Get in touch</h2>
+            <div style="color:var(--muted);margin-bottom:12px">Tell us about your challenge — we'll propose a plan.</div>
+            <div style="display:grid;grid-template-columns:1fr 360px;gap:18px">
+                <form class="hero-card contact-form" onsubmit="event.preventDefault();alert('Thanks — this is a demo form.');">
+                    <input class="input" type="text" placeholder="Your name" required />
+                    <input class="input" type="email" placeholder="Business email" required />
+                    <input class="input" type="text" placeholder="Company / Website" />
+                    <textarea placeholder="Brief summary of your project" required></textarea>
+                    <div style="display:flex;gap:8px">
+                        <button class="btn" type="submit">Request a callback</button>
+                        <button class="btn ghost" type="button" onclick="location.href='#'">Schedule meeting</button>
+                    </div>
+                </form>
+
+                <aside class="hero-card" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
+                    <div style="font-weight:700">Office</div>
+                    <div style="color:var(--muted);font-size:13px">Technostic Group — Remote first</div>
+                    <div style="margin-top:8px">
+                        <div style="font-weight:700">Email</div>
+                        <div style="color:var(--muted);font-size:13px">hello@technostic.group</div>
+                    </div>
+                    <div style="margin-top:8px">
+                        <div style="font-weight:700">Working hours</div>
+                        <div style="color:var(--muted);font-size:13px">Mon — Fri, 9:00 — 18:00 (UTC)</div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <footer>
+            <div>© <strong>Technostic Group</strong> — Built with care</div>
+            <div style="color:var(--muted)">Privacy · Terms · Status</div>
+        </footer>
+
+    </div>
 </body>
 </html>
