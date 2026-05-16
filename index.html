@@ -27,11 +27,38 @@
                 radial-gradient(1200px 400px at 10% 10%, rgba(0,192,255,0.06), transparent),
                 radial-gradient(900px 300px at 95% 80%, rgba(229,57,53,0.05), transparent),
                 linear-gradient(180deg,#030516 0%,var(--bg) 100%);
-            color: #eaf6ff;
+            color: var(--body-color);
             -webkit-font-smoothing:antialiased;
             -moz-osx-font-smoothing:grayscale;
             line-height:1.45;
         }
+
+        /* Light theme overrides */
+        html[data-theme="light"]{
+            --bg:#ffffff; /* pure white background as requested */
+            --card:#ffffff;
+            --accent-1:#0ea5e9;
+            --accent-2:#ef4444;
+            --muted:#475569;
+            --glass: rgba(2,6,23,0.03);
+            --body-color: #042028;
+            color-scheme: light;
+        }
+
+        /* Ensure body uses plain background in light mode (override gradients) */
+        html[data-theme="light"] body{
+            background: var(--bg) !important;
+            background-image: none !important;
+            background-color: var(--bg) !important;
+            color: var(--body-color) !important;
+        }
+
+        /* Icon styles for the theme toggle */
+        #theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:36px;padding:6px}
+        #theme-toggle svg{width:18px;height:18px;display:block}
+
+        /* default body text color variable */
+        :root{--body-color:#eaf6ff}
         .container{max-width:1100px;margin:0 auto;padding:28px;}
         header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
         .brand{display:flex;gap:12px;align-items:center}
@@ -117,6 +144,7 @@
                 <a href="#services">Services</a>
                 <a href="#team">Team</a>
                 <a href="#contact" class="primary">Contact</a>
+                <button id="theme-toggle" class="btn ghost" type="button" aria-label="Toggle theme" title="Toggle theme"></button>
             </nav>
         </header>
 
@@ -236,6 +264,40 @@
 
     </div>
         <script>
+            // Theme toggle: persist selection and apply on load
+            (function(){
+                const htmlEl = document.documentElement;
+                const toggle = document.getElementById('theme-toggle');
+                const saved = localStorage.getItem('theme');
+                const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+                const initial = saved || (prefersLight ? 'light' : 'dark');
+                htmlEl.setAttribute('data-theme', initial);
+                    const sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4" fill="currentColor"/><g stroke="currentColor" stroke-linecap="round"><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/></g></svg>';
+                    const moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor"/></svg>';
+                    function setToggleIcon(mode){
+                        if(!toggle) return;
+                        if(mode === 'light'){
+                            toggle.innerHTML = sunIcon;
+                            toggle.setAttribute('aria-label','Light mode');
+                            toggle.title = 'Light mode';
+                        } else {
+                            toggle.innerHTML = moonIcon;
+                            toggle.setAttribute('aria-label','Dark mode');
+                            toggle.title = 'Dark mode';
+                        }
+                    }
+                    if(toggle){
+                        setToggleIcon(initial);
+                        toggle.addEventListener('click', function(){
+                            const current = htmlEl.getAttribute('data-theme') || 'dark';
+                            const next = current === 'light' ? 'dark' : 'light';
+                            htmlEl.setAttribute('data-theme', next);
+                            localStorage.setItem('theme', next);
+                            setToggleIcon(next);
+                        });
+                    }
+            })();
+
             // Formspree AJAX submit handler
             (function(){
                 const form = document.querySelector('.contact-form');
