@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Technostic Group — Innovate. Scale. Succeed.</title>
     <meta name="description" content="Technostic Group — Cybersecurity, Network Security, and data-protection for startups and enterprises." />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root{
-            --bg:#0f1724;
-            --card:#0b1220;
-            --accent:#6C63FF;
-            --muted:#94a3b8;
-            --glass: rgba(255,255,255,0.04);
+            --bg:#04060b;
+            --card:#071027;
+            --accent-1:#e53935; /* neon red */
+            --accent-2:#00c0ff; /* electric blue */
+            --accent: linear-gradient(90deg,var(--accent-1),var(--accent-2));
+            --muted:#9fb4c9;
+            --glass: rgba(255,255,255,0.03);
             --radius:12px;
             color-scheme: dark;
         }
@@ -20,9 +22,12 @@
         html,body{height:100%}
         body{
             margin:0;
-            font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-            background:linear-gradient(180deg,#071024 0%,#071426 50%,var(--bg) 100%);
-            color:#e6eef8;
+            font-family:Orbitron,Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+            background:
+                radial-gradient(1200px 400px at 10% 10%, rgba(0,192,255,0.06), transparent),
+                radial-gradient(900px 300px at 95% 80%, rgba(229,57,53,0.05), transparent),
+                linear-gradient(180deg,#030516 0%,var(--bg) 100%);
+            color: #eaf6ff;
             -webkit-font-smoothing:antialiased;
             -moz-osx-font-smoothing:grayscale;
             line-height:1.45;
@@ -31,52 +36,55 @@
         header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
         .brand{display:flex;gap:12px;align-items:center}
         .logo{
-            width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3dd5c9);
-            display:flex;align-items:center;justify-content:center;font-weight:700;color:#041226;box-shadow:0 6px 20px rgba(108,99,255,0.18)
+            width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));
+            display:flex;align-items:center;justify-content:center;font-weight:700;color:#041226;text-shadow:0 2px 8px rgba(0,0,0,0.6);box-shadow:0 8px 30px rgba(0,192,255,0.06),0 2px 10px rgba(229,57,53,0.06)
         }
         nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
-        nav a.primary{background:linear-gradient(90deg,var(--accent),#3dd5c9);color:#041226;padding:8px 14px;border-radius:10px}
+        nav a.primary{background:linear-gradient(90deg,var(--accent-2),var(--accent-1));color:#041226;padding:8px 14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,192,255,0.06)}
         .hero{
             display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0 64px;
         }
         .hero-card{
-            background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-            border-radius:var(--radius);padding:34px;box-shadow:0 8px 30px rgba(2,6,23,0.6);
-            
+            background:linear-gradient(180deg, rgba(8,14,30,0.6), rgba(3,6,18,0.6));
+            border-radius:var(--radius);padding:34px;box-shadow:0 12px 40px rgba(0,0,0,0.7),0 6px 30px rgba(0,192,255,0.03) inset;
         }
-        aside.hero-card{font-size:15px;line-height:1.6}
+        aside.hero-card{font-size:15px;line-height:1.6;color:var(--muted)}
         h1{margin:0;font-size:34px;letter-spacing:-0.4px}
         .lead{color:var(--muted);margin-top:10px;font-size:15px}
         .cta{display:flex;gap:12px;margin-top:20px}
         .btn{
             padding:12px 18px;border-radius:10px;border:0;font-weight:700;cursor:pointer;
-            background:var(--accent);color:#041226;box-shadow:0 8px 24px rgba(108,99,255,0.18)
+            background:var(--accent);color:#041226;box-shadow:0 10px 30px rgba(0,192,255,0.06),0 6px 18px rgba(0,0,0,0.6);
+            transition:transform .12s ease,box-shadow .12s ease;
         }
+        .btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,192,255,0.12),0 8px 24px rgba(0,0,0,0.6)}
+        .contact-btn{background:linear-gradient(90deg,var(--accent-2),var(--accent-1));color:#041226;border:1px solid rgba(0,0,0,0.12);box-shadow:0 12px 36px rgba(229,57,53,0.06)}
+        .contact-btn:hover{transform:translateY(-3px);box-shadow:0 20px 48px rgba(229,57,53,0.12)}
         .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
         .stats{display:flex;gap:16px;margin-top:20px}
         .stat{background:var(--glass);padding:10px 14px;border-radius:10px;font-weight:700;color:#dbeafe}
         .panel{
-            border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.06));
             height:100%;
-            display:flex;flex-direction:column;
+            display:flex;flex-direction:column;border:1px solid rgba(0,192,255,0.04);
         }
         .cover{
-            background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=1c3c3c7b037ffd24f5f6d7f69c4a1f55');
-            background-size:cover;background-position:center;height:160px;
+            background-image:linear-gradient(180deg,rgba(0,0,0,0.25),rgba(0,0,0,0.6)),url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=');
+            background-size:cover;background-position:center;height:160px;filter:contrast(1.05) saturate(1.05);
             position:relative;
         }
-        .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,20,0.15),rgba(6,10,20,0.55))}
+        .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.5))}
         .panel-body{padding:18px;display:flex;flex-direction:column;gap:10px}
         .features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}
         .feature{background:var(--card);padding:16px;border-radius:10px;font-size:14px}
         .feature svg{width:22px;height:22px;vertical-align:middle;margin-right:10px}
         .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
-        .service{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:18px;border-radius:12px}
+        .service{background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);padding:18px;border-radius:12px;border:1px solid rgba(0,192,255,0.03)}
         .team{display:flex;gap:14px;margin-top:18px}
         .member{background:var(--card);padding:12px;border-radius:10px;display:flex;gap:12px;align-items:center}
-        .avatar{width:56px;height:56px;border-radius:10px;flex:0 0 56px;overflow:hidden}
+        .avatar{width:56px;height:56px;border-radius:10px;flex:0 0 56px;overflow:hidden;border:1px solid rgba(0,0,0,0.5)}
         .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-        footer{border-top:1px solid rgba(255,255,255,0.03);padding:20px 0;margin-top:40px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+        footer{border-top:1px solid rgba(0,192,255,0.03);padding:20px 0;margin-top:40px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
         /* responsive */
         @media (max-width:980px){
             .hero{grid-template-columns:1fr;padding:20px 0}
@@ -91,7 +99,7 @@
             h1{font-size:26px}
         }
         .contact-form{display:flex;flex-direction:column;gap:8px}
-        .input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:inherit}
+        .input,textarea{background:transparent;border:1px solid rgba(0,192,255,0.06);padding:10px;border-radius:8px;color:inherit}
         textarea{min-height:100px;resize:vertical}
     </style>
 </head>
@@ -201,7 +209,7 @@
                     <input class="input" name="phone" type="tel" placeholder="Phone number (digits only)" pattern="[0-9]+" inputmode="numeric" title="Enter digits only" />
                     <textarea name="message" placeholder="Brief summary of your project" required></textarea>
                     <div style="display:flex;gap:8px">
-                        <button class="btn" type="submit">Request a callback</button>
+                        <button class="btn contact-btn" type="submit">Request a callback</button>
                         <button class="btn ghost" type="button" onclick="location.href='#'">Schedule meeting</button>
                     </div>
                 </form>
