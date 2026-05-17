@@ -39,7 +39,7 @@
             --card:#ffffff;
             --accent-1:#0ea5e9;
             --accent-2:#ef4444;
-            --muted:##3373cc;
+            --muted:#3373cc;
             --glass: rgba(2,6,23,0.03);
             --body-color: #042028;
             color-scheme: light;
@@ -132,6 +132,19 @@
         }
         .contact-form{display:flex;flex-direction:column;gap:8px}
         .input,textarea{background:transparent;border:1px solid rgba(0,192,255,0.06);padding:10px;border-radius:8px;color:inherit}
+        /* Light mode form text fix */
+        html[data-theme="light"] .input,
+        html[data-theme="light"] textarea{
+        color:#041226;
+        background:#ffffff;
+        border:1px solid rgba(0,0,0,0.12);
+}
+
+/* Placeholder text */
+html[data-theme="light"] .input::placeholder,
+html[data-theme="light"] textarea::placeholder{
+    color:#64748b;
+}
         textarea{min-height:100px;resize:vertical}
     </style>
 </head>
