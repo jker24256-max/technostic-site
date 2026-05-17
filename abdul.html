@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Murtaza Broachwala — Technostic Group</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#f5f5f5;
+    --text:#041226;
+    --muted:#475569;
+    --card:#ffffff;
+    --border:rgba(0,0,0,0.08);
+    --accent1:#00c0ff;
+    --accent2:#e53935;
+
+    color-scheme:light;
+}
+
+html[data-theme="dark"]{
+    --bg:#04060b;
+    --text:#eaf6ff;
+    --muted:#b8c7d9;
+    --card:#071027;
+    --border:rgba(255,255,255,0.08);
+
+    color-scheme:dark;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Orbitron, sans-serif;
+    padding:32px;
+
+    transition:
+        background 0.35s ease,
+        color 0.35s ease;
+}
+
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.logo{
+    width:48px;
+    height:48px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--accent1),var(--accent2));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    color:#041226;
+}
+
+.brand-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.brand-info small{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* BUTTONS */
+
+.top-actions{
+    display:flex;
+    gap:10px;
+}
+
+.button{
+    height:44px;
+    padding:0 18px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:transparent;
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    text-decoration:none;
+    font-family:Orbitron;
+    transition:0.3s ease;
+}
+
+.button:hover{
+    transform:translateY(-2px);
+}
+
+/* MAIN */
+
+.main-layout{
+    display:grid;
+    grid-template-columns:340px 1fr;
+    gap:40px;
+    align-items:start;
+}
+
+/* IMAGE PANEL */
+
+.image-panel{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    min-height:720px;
+
+    transition:
+        background 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.image-panel img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* CONTENT */
+
+.content-panel{
+    padding-top:10px;
+}
+
+h1{
+    font-size:72px;
+    line-height:1;
+    margin-bottom:26px;
+}
+
+.content-panel p{
+    color:var(--muted);
+    font-size:15px;
+    line-height:2;
+    margin-bottom:28px;
+
+    transition:color 0.35s ease;
+}
+
+.back-button{
+    margin-top:12px;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:36px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+    .main-layout{
+        grid-template-columns:1fr;
+    }
+
+    .image-panel{
+        min-height:420px;
+    }
+
+    h1{
+        font-size:44px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">
+
+        <div class="logo">
+            TG
+        </div>
+
+        <div class="brand-info">
+            <strong>Technostic Group</strong>
+            <small>Profile</small>
+        </div>
+
+    </div>
+
+    <div class="top-actions">
+
+        <a href="index.html" class="button">
+            Home
+        </a>
+
+        <button id="theme-toggle" class="button">
+        </button>
+
+    </div>
+
+</header>
+
+<div class="main-layout">
+
+    <!-- LEFT IMAGE -->
+
+    <div class="image-panel">
+
+        <!-- REPLACE THIS IMAGE -->
+
+        <img src="assets/abdul.jpg" alt="Abdul Muhaymin Nawaz">
+
+    </div>
+
+    <!-- RIGHT CONTENT -->
+
+    <div class="content-panel">
+
+        <h1>
+            Abdul Muhaymin Nawaz
+        </h1>
+
+        <p>
+           Abdul Muhaymin Nawaz founded his cybersecurity firm on a frustration shared by many but addressed by few: most organizations do not truly know where they are exposed until something goes wrong. His work exists to change that equation before the crisis, not after.
+
+            He is a cybersecurity researcher and consultant with a focus on offensive security, vulnerability research, and red teaming. He has experience working with clients across various industries, including finance, healthcare, and technology, helping them identify and mitigate security risks.
+
+            Abdul is passionate about ethical hacking and is committed to helping organizations improve their security posture through proactive testing and assessment. He has a strong track record of successfully identifying vulnerabilities and providing actionable recommendations to enhance overall security.
+
+            With a deep understanding of the latest cybersecurity threats and trends, Abdul is dedicated to staying ahead of the curve and continuously improving his skills to better serve his clients.
+        </p>
+
+        <p>
+           As Founder & CEO, Abdul leads hands-on security assessments of private networks — the kind where vulnerabilities are not just catalogued but actively closed. He has walked into live environments, identified numerous critical flaws, and secured the most pressing ones before leaving the room. It is a working style that sits closer to field work than consulting, and his clients tend to notice the difference.
+
+            Abdul is also a prolific writer and speaker, sharing his insights and expertise on cybersecurity topics through various channels. He has published research papers, contributed to industry blogs, and spoken at conferences around the world, helping to educate and inform others about the importance of cybersecurity.
+        </p>
+
+        <p>
+            What sets his approach apart is the thinking that precedes the action. Abdul does not move until he has mapped out what is genuinely achievable — not the optimistic version, the realistic one. From there, he builds a plan that survives contact with actual systems, actual constraints, and actual people. It is a style that has earned him the trust of clients who have seen the difference between a report that looks good on paper and one that actually makes them safer.
+        </p>
+
+        <p>
+           He runs his firm with the kind of ownership that leaves little room for half-measures, or for clocking out at a reasonable hour. Colleagues describe him as someone who stays with a problem until it is resolved, not until it is someone else's problem. In an industry where the difference between a patch and a breach can be a matter of hours, that tends to matter.
+        </p>
+
+        <a href="index.html" class="button back-button">
+            Back to Home
+        </a>
+
+        <footer>
+            © Technostic Group
+        </footer>
+
+    </div>
+
+</div>
+
+<script>
+
+(function(){
+
+    const htmlEl = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+
+    const saved = localStorage.getItem('theme');
+
+    const prefersDark =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const initial =
+        saved || (prefersDark ? 'dark' : 'light');
+
+    htmlEl.setAttribute('data-theme', initial);
+
+    const sunIcon = `
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="18"
+         height="18"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2"
+         stroke-linecap="round"
+         stroke-linejoin="round">
+
+        <circle cx="12" cy="12" r="5"></circle>
+
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+
+    </svg>`;
+
+    const moonIcon = `
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="18"
+         height="18"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2"
+         stroke-linecap="round"
+         stroke-linejoin="round">
+
+        <path d="M21 12.79A9 9 0 1111.21 3
+                 7 7 0 0021 12.79z"></path>
+
+    </svg>`;
+
+    function updateIcon(theme){
+
+        toggle.innerHTML =
+            theme === 'light'
+            ? sunIcon
+            : moonIcon;
+    }
+
+    updateIcon(initial);
+
+    toggle.addEventListener('click', function(){
+
+        const current =
+            htmlEl.getAttribute('data-theme');
+
+        const next =
+            current === 'light'
+            ? 'dark'
+            : 'light';
+
+        htmlEl.setAttribute('data-theme', next);
+
+        localStorage.setItem('theme', next);
+
+        updateIcon(next);
+    });
+
+})();
+
+</script>
+
+</body>
+</html>
