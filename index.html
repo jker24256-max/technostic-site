@@ -31,6 +31,10 @@
             -webkit-font-smoothing:antialiased;
             -moz-osx-font-smoothing:grayscale;
             line-height:1.45;
+            transition:
+            background 0.35s ease,
+            background-color 0.35s ease,
+            color 0.35s ease;
         }
 
         /* Light theme overrides */
@@ -40,8 +44,8 @@
             --accent-1:#0ea5e9;
             --accent-2:#ef4444;
             --muted:#3373cc;
-            --glass: rgba(2,6,23,0.03);
-            --body-color: #042028;
+            --glass: rgba(46, 49, 62, 0.03);
+            --body-color: #2c3436;
             color-scheme: light;
         }
 
@@ -146,6 +150,26 @@ html[data-theme="light"] textarea::placeholder{
     color:#64748b;
 }
         textarea{min-height:100px;resize:vertical}
+        /* Smooth theme animations */
+.hero-card,
+.panel,
+.service,
+.feature,
+.member,
+.stat,
+.btn,
+.input,
+textarea,
+nav a,
+footer,
+.logo{
+    transition:
+        background 0.35s ease,
+        background-color 0.35s ease,
+        color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
     </style>
 </head>
 <body>
