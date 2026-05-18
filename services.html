@@ -5,13 +5,103 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Services — Technostic Group</title>
   <style>
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:24px;background:#071024;color:#e6eef8}
-    a{color:#6C63FF;text-decoration:none}
-    h1{margin-top:0}
-    .container{max-width:900px;margin:0 auto}
-    .card{background:rgba(255,255,255,0.03);padding:18px;border-radius:10px;margin-bottom:16px}
-    ul{margin:8px 0 0 20px;color:#94a3b8}
-  </style>
+    :root{
+        --bg:#071024;
+        --card:rgba(255,255,255,0.04);
+        --text:#e6eef8;
+        --muted:#c7d8ea;
+        --accent:#6C63FF;
+        color-scheme:dark;
+    }
+
+    html[data-theme="light"]{
+        --bg:#ffffff;
+        --card:rgba(0,0,0,0.04);
+        --text:#042028;
+        --muted:#475569;
+        --accent:#2563eb;
+        color-scheme:light;
+    }
+
+    *{
+        box-sizing:border-box;
+    }
+
+    body{
+        font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+        margin:24px;
+        background:var(--bg);
+        color:var(--text);
+        transition:background .3s ease,color .3s ease;
+    }
+
+    a{
+        color:var(--accent);
+        text-decoration:none;
+    }
+
+    h1{
+        margin-top:0;
+    }
+
+    .container{
+        max-width:900px;
+        margin:0 auto;
+    }
+
+    .card{
+        background:var(--card);
+        padding:18px;
+        border-radius:12px;
+        margin-bottom:16px;
+        border:1px solid rgba(255,255,255,0.05);
+        transition:background .3s ease;
+    }
+
+    html[data-theme="light"] .card{
+        border:1px solid rgba(0,0,0,0.08);
+    }
+
+    ul{
+        margin:8px 0 0 20px;
+        color:var(--muted);
+    }
+
+    .top-actions{
+        display:flex;
+        align-items:center;
+        gap:10px;
+    }
+
+    .button{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        padding:10px 14px;
+        border-radius:10px;
+        border:1px solid rgba(255,255,255,0.08);
+        background:transparent;
+        color:inherit;
+        cursor:pointer;
+        text-decoration:none;
+    }
+
+    html[data-theme="light"] .button{
+        border:1px solid rgba(0,0,0,0.1);
+    }
+
+    #theme-toggle{
+        width:42px;
+        height:42px;
+        padding:0;
+    }
+
+    footer{
+        color:var(--muted);
+        font-size:13px;
+        margin-top:18px;
+    }
+</style>
 </head>
 <body>
   <div class="container">
@@ -20,7 +110,11 @@
         <h1>Services</h1>
         <div style="color:#94a3b8">Technostic Group — Cybersecurity & Technology</div>
       </div>
-      <div><a href="index.html">← Back to home</a></div>
+     <div class="top-actions">
+      <a href="index.html" class="button">← Back to home</a>
+
+      <button id="theme-toggle" class="button" type="button"></button>
+      </div>
     </header>
 
     <section class="card">
@@ -47,5 +141,83 @@
 
     <footer style="color:#94a3b8;font-size:13px;margin-top:18px">Contact: <a href="mailto:hacknosticgroup@gmail.com">hacknosticgroup@gmail.com</a></footer>
   </div>
+  <script>
+(function(){
+    const htmlEl = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+
+    const saved = localStorage.getItem('theme');
+
+    const prefersLight = window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: light)').matches;
+
+    const initial = saved || (prefersLight ? 'light' : 'dark');
+
+    htmlEl.setAttribute('data-theme', initial);
+
+    const sunIcon = `
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="18"
+         height="18"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2"
+         stroke-linecap="round"
+         stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>`;
+
+    const moonIcon = `
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="18"
+         height="18"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2"
+         stroke-linecap="round"
+         stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1111.21 3
+                 7 7 0 0021 12.79z"></path>
+    </svg>`;
+
+    function updateIcon(theme){
+        toggle.innerHTML =
+            theme === 'light'
+            ? sunIcon
+            : moonIcon;
+    }
+
+    updateIcon(initial);
+
+    if(toggle){
+        toggle.addEventListener('click', function(){
+
+            const current =
+                htmlEl.getAttribute('data-theme') || 'dark';
+
+            const next =
+                current === 'light'
+                ? 'dark'
+                : 'light';
+
+            htmlEl.setAttribute('data-theme', next);
+
+            localStorage.setItem('theme', next);
+
+            updateIcon(next);
+        });
+    }
+})();
+</script>
 </body>
 </html>
