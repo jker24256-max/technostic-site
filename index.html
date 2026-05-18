@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="icon" type="image/jpg" href="/favicon.ico">
+    <link rel="icon" type="image/jpg" href="assets/favicon.jpg">
     <title>Technostic Group — Protection. Peace. Prosperity.</title>
     <meta name="description" content="Technostic Group — Cybersecurity, Network Security, and data-protection for startups and enterprises." />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -49,6 +49,21 @@
             --body-color: #2c3436;
             color-scheme: light;
         }
+        html[data-theme="light"] .lead
+        {
+        color:#f1f5f9;
+        }
+        html[data-theme="light"] .btn.ghost
+        {
+         color:#f8fafc;
+
+         border:1px solid rgba(255,255,255,0.12);
+
+         background:rgba(255,255,255,0.04);
+        }
+        html[data-theme="light"] #theme-toggle{
+    color:#041226;
+}
 
         /* Ensure body uses plain background in light mode (override gradients) */
         html[data-theme="light"] body{
@@ -200,6 +215,73 @@ footer,
         border-color 0.35s ease,
         box-shadow 0.35s ease;
 }
+.terminal-box{
+
+    margin-top:22px;
+
+    background:#000000;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(0,255,120,0.25);
+
+    box-shadow:
+        0 0 20px rgba(0,255,120,0.08),
+        0 10px 30px rgba(0,0,0,0.35);
+}
+
+.terminal-header{
+
+    padding:10px 16px;
+
+    background:rgba(0,255,120,0.08);
+
+    color:#00ff88;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    border-bottom:1px solid rgba(0,255,120,0.15);
+}
+
+.terminal-content{
+
+    padding:18px;
+
+    font-family:monospace;
+
+    color:#00ff88;
+
+    font-size:13px;
+
+    line-height:1.8;
+}
+
+.terminal-content p{
+    margin:0 0 8px 0;
+}
+
+.blink{
+    animation:blinkAnim 1s infinite;
+}
+
+@keyframes blinkAnim{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:0.3;
+    }
+
+    100%{
+        opacity:1;
+    }
+}
     </style>
 </head>
 <body>
@@ -215,7 +297,7 @@ footer,
             <nav>
                 <a href="#services">Services</a>
                 <a href="#team">Team</a>
-                <a href="#contact" class="primary">Contact</a>
+                <a href="#contact" class="btn contact-btn">Contact</a>
                 <button id="theme-toggle" class="btn ghost" type="button" aria-label="Toggle theme" title="Toggle theme"></button>
             </nav>
         </header>
@@ -242,7 +324,29 @@ footer,
                         
                     </div>
 
-                    
+                    <div class="terminal-box">
+
+    <div class="terminal-header">
+        SYSTEM STATUS
+    </div>
+
+    <div class="terminal-content">
+
+        <p>> Initializing secure gateway...</p>
+
+        <p>> Firewall protection enabled</p>
+
+        <p>> Monitoring incoming traffic...</p>
+
+        <p>> Threat detection active</p>
+
+        <p>> Encryption protocols secured</p>
+
+        <p class="blink">> SYSTEM ONLINE_</p>
+
+    </div>
+
+</div>
                 </div>
             </aside>
         </section>
@@ -301,8 +405,7 @@ footer,
                     <input class="input" name="phone" type="tel" placeholder="Phone number (digits only)" pattern="[0-9]+" inputmode="numeric" title="Enter digits only" />
                     <textarea name="message" placeholder="Brief summary of your project" required></textarea>
                     <div style="display:flex;gap:8px">
-                        <button class="btn contact-btn" type="submit">Request a callback</button>
-                        <button class="btn ghost" type="button" onclick="location.href='#'">Schedule meeting</button>
+                        <button class="btn contact-btn" type="submit">Send the Details</button>
                     </div>
                 </form>
 
