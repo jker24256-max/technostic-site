@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Monthly Retainer Package — Technostic Group</title>
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#04060b;
+    --text:#eaf6ff;
+    --muted:#9fb4c9;
+    --card:#071027;
+    --border:rgba(255,255,255,0.08);
+
+    --accent1:#00c0ff;
+    --accent2:#e53935;
+
+    color-scheme:dark;
+}
+
+html[data-theme="light"]{
+    --bg:#f5f5f5;
+    --text:#041226;
+    --muted:#64748b;
+    --card:#ffffff;
+    --border:rgba(0,0,0,0.08);
+
+    color-scheme:light;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+
+    font-family:Orbitron,sans-serif;
+
+    padding:32px;
+
+    transition:
+        background 0.35s ease,
+        color 0.35s ease;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:40px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.logo{
+    width:52px;
+    height:52px;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.brand-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.brand-info small{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* BUTTONS */
+
+.top-actions{
+    display:flex;
+    gap:10px;
+}
+
+.button{
+    height:44px;
+
+    padding:0 18px;
+
+    border-radius:12px;
+
+    border:1px solid var(--border);
+
+    background:transparent;
+
+    color:var(--text);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    font-family:Orbitron;
+
+    transition:0.3s ease;
+}
+
+.button:hover{
+    transform:translateY(-2px);
+}
+
+/* PACKAGE CARD */
+
+.package-card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    padding:36px;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.25);
+
+    transition:
+        background 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.package-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+    margin-bottom:20px;
+}
+
+.package-top h1{
+    font-size:54px;
+    margin-bottom:10px;
+}
+
+.package-top p{
+    color:var(--muted);
+    max-width:700px;
+    line-height:1.8;
+}
+
+.price{
+
+    min-width:180px;
+
+    text-align:center;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent1),
+            var(--accent2)
+        );
+
+    color:white;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* SERVICES */
+
+.services-title{
+    margin-top:34px;
+    margin-bottom:18px;
+
+    font-size:26px;
+}
+
+.service-list{
+    display:grid;
+    gap:16px;
+}
+
+.service-item{
+
+    padding:18px 22px;
+
+    border-radius:16px;
+
+    background:
+        rgba(255,255,255,0.03);
+
+    border:
+        1px solid var(--border);
+
+    font-size:16px;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.service-item:hover{
+
+    transform:
+        translateX(6px);
+
+    background:
+        rgba(255,255,255,0.06);
+}
+
+/* CONTACT */
+
+.contact{
+
+    margin-top:36px;
+
+    color:var(--muted);
+
+    font-size:15px;
+}
+
+.contact a{
+    color:var(--accent1);
+    text-decoration:none;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:40px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .package-top{
+        flex-direction:column;
+    }
+
+    .package-top h1{
+        font-size:40px;
+    }
+
+    .price{
+        width:100%;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+    <div class="brand">
+
+        <div class="logo">
+            <img src="assets/logo.jpeg" alt="Technostic Group Logo">
+        </div>
+
+        <div class="brand-info">
+            <strong>Technostic Group</strong>
+            <small>Cybersecurity • Network Defense</small>
+        </div>
+
+    </div>
+
+    <div class="top-actions">
+
+    <a href="services.html" class="button">
+        ← Back to Services
+    </a>
+
+    <button id="theme-toggle" class="button">
+    </button>
+
+</div>
+
+</header>
+
+<div class="package-card">
+
+    <div class="package-top">
+
+        <div>
+
+            <h1>
+                Monthly Retainer Package
+            </h1>
+
+            <p>
+               Ideal for businesses seeking continuous security
+               oversight, regular monitoring, and long-term
+               cybersecurity support tailored to evolving threats.
+            </p>
+            <p>
+               Services available 24/7 to ensure ongoing protection and rapid response.
+            </p>
+
+        </div>
+
+        <div class="price">
+            ₹37999 / month
+        </div>
+
+    </div>
+
+    <h2 class="services-title">
+        Services Included
+    </h2>
+
+    <div class="service-list">
+
+            <div class="service-item">
+            1. Basic Network Assessment
+        </div>
+
+        <div class="service-item">
+            2. Open Port Scanning
+        </div>
+
+        <div class="service-item">
+            3. Wi-Fi Security Review
+        </div>
+
+        <div class="service-item">
+            4. Weak Password Identification
+        </div>
+
+        <div class="service-item">
+            5. Internal Vulnerability Assessment
+        </div>
+
+        <div class="service-item">
+            6. Network Mapping 
+        </div>
+
+        <div class="service-item">
+            7. Firewall Configuration Review
+        </div>
+
+        <div class="service-item">
+            8. Security Recommendations & Best Practices
+        </div>
+
+        <div class="service-item">
+            9. Detailed Security Report with Actionable Insights 
+        </div>
+
+        <div class="service-item">
+            10. Periodic Security Audits (Monthly)
+        </div>
+
+        <div class="service-item">
+            11. Vulnerability Patching & Updates
+        </div>
+
+        <div class="service-item">
+            12. Exposure Monitoring & Threat Intelligence
+        </div>
+
+        <div class="service-item">
+            13. Ongoing Security Consultation & Support
+        </div>
+    </div>
+
+    <div class="contact">
+
+        Contact us:
+        <a href="mailto:hacknosticgroup@gmail.com">
+            hacknosticgroup@gmail.com
+        </a>
+
+    </div>
+
+</div>
+
+<footer>
+    © Technostic Group — Built with care
+</footer>
+
+</div>
+<script>
+
+(function(){
+
+    const htmlEl = document.documentElement;
+
+    const toggle =
+        document.getElementById('theme-toggle');
+
+    const saved =
+        localStorage.getItem('theme');
+
+    const prefersDark =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const initial =
+        saved || (prefersDark ? 'dark' : 'light');
+
+    htmlEl.setAttribute('data-theme', initial);
+
+    const sunIcon = `
+    ☀️
+    `;
+
+    const moonIcon = `
+    🌙
+    `;
+
+    function updateIcon(theme){
+
+        toggle.innerHTML =
+            theme === 'light'
+            ? sunIcon
+            : moonIcon;
+    }
+
+    updateIcon(initial);
+
+    toggle.addEventListener('click', function(){
+
+        const current =
+            htmlEl.getAttribute('data-theme');
+
+        const next =
+            current === 'light'
+            ? 'dark'
+            : 'light';
+
+        htmlEl.setAttribute('data-theme', next);
+
+        localStorage.setItem('theme', next);
+
+        updateIcon(next);
+    });
+
+})();
+
+</script>
+</body>
+</html>
