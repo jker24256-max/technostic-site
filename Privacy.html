@@ -99,9 +99,164 @@
     justify-content:center;
     padding:0;
 }
+/* =========================
+   CYBER GLASSMORPHISM FX
+========================= */
+
+body{
+    position:relative;
+}
+
+/* Mouse glow */
+
+.mouse-glow{
+
+    position:fixed;
+
+    width:420px;
+    height:420px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,192,255,0.16) 0%,
+            rgba(229,57,53,0.10) 30%,
+            rgba(0,0,0,0) 75%
+        );
+
+    filter:blur(45px);
+
+    transform:
+        translate(-50%, -50%);
+
+    transition:
+        transform 0.08s linear;
+
+    mix-blend-mode:screen;
+}
+
+/* Lift important cards above glow */
+
+.hero-card,
+.panel,
+.service,
+.service-box,
+.package-card,
+.image-panel,
+.member,
+.feature{
+
+    position:relative;
+
+    z-index:2;
+
+    overflow:hidden;
+
+    backdrop-filter:blur(14px);
+
+    -webkit-backdrop-filter:blur(14px);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.06),
+            rgba(255,255,255,0.02)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.35),
+        inset 0 1px 1px rgba(255,255,255,0.04);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* Floating hover */
+
+.hero-card:hover,
+.panel:hover,
+.service:hover,
+.service-box:hover,
+.package-card:hover,
+.member:hover,
+.feature:hover{
+
+    transform:
+        translateY(-6px)
+        scale(1.01);
+
+    border-color:
+        rgba(0,192,255,0.25);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.45),
+        0 0 25px rgba(0,192,255,0.12);
+}
+
+/* Glass shine sweep */
+
+.hero-card::before,
+.panel::before,
+.service::before,
+.service-box::before,
+.package-card::before,
+.member::before,
+.feature::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120%;
+    left:-40%;
+
+    width:60%;
+    height:300%;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(255,255,255,0),
+            rgba(255,255,255,0.06),
+            rgba(255,255,255,0)
+        );
+
+    transform:
+        rotate(25deg);
+
+    transition:
+        transform 0.8s ease;
+
+    pointer-events:none;
+}
+
+.hero-card:hover::before,
+.panel:hover::before,
+.service:hover::before,
+.service-box:hover::before,
+.package-card:hover::before,
+.member:hover::before,
+.feature:hover::before{
+
+    transform:
+        rotate(25deg)
+        translateX(220%);
+}
     </style>
 </head>
 <body>
+    <div class="mouse-glow"></div>
     <header>
         <div style="display:flex;gap:12px;align-items:center">
             <div class="logo">TG</div>
@@ -209,5 +364,83 @@
     }
 })();
 </script>
+<script>
+
+/* =========================
+   SMOOTH SCROLL ANIMATIONS
+========================= */
+
+document.documentElement.style.scrollBehavior = "smooth";
+
+/* Elements to animate */
+
+const animatedElements = document.querySelectorAll(
+`
+.hero-card,
+.panel,
+.service,
+.service-box,
+.service-item,
+.member,
+.feature,
+.package-card,
+.image-panel,
+.content-panel,
+.stat,
+.plan-btn,
+.contact-form,
+h1,
+h2,
+p,
+footer
+`
+);
+
+/* Initial hidden state */
+
+animatedElements.forEach((el, index) => {
+
+    el.style.opacity = "0";
+    el.style.transform = "translateY(40px)";
+    el.style.filter = "blur(8px)";
+
+    el.style.transition = `
+        opacity 0.9s ease,
+        transform 0.9s ease,
+        filter 0.9s ease
+    `;
+
+    /* stagger effect */
+
+    el.style.transitionDelay = `${index * 0.05}s`;
+});
+
+/* Observer */
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+            entry.target.style.filter = "blur(0px)";
+
+            observer.unobserve(entry.target);
+        }
+
+    });
+
+}, {
+    threshold: 0.12
+});
+
+/* Observe all */
+
+animatedElements.forEach(el => observer.observe(el));
+
+</script>
+
 </body>
 </html>
