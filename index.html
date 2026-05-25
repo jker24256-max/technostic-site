@@ -156,6 +156,27 @@ html[data-theme="light"] .panel-body > div{
         nav a{color:var(--muted);text-decoration:none;margin-left:0;font-weight:600;display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;transition:background .2s ease,color .2s ease,transform .2s ease}
         nav a:hover{background:rgba(255,255,255,0.05);color:#fff;transform:translateY(-1px)}
         nav a.primary{background:linear-gradient(90deg,var(--accent-2),var(--accent-1));color:#041226;padding:8px 14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,192,255,0.06)}
+        nav a.contact-btn{
+            background:linear-gradient(90deg,#ffd97a,#ffb300);
+            color:#1a1200;
+            border:1px solid rgba(0,0,0,0.12);
+            box-shadow:0 10px 30px rgba(255,179,0,0.10),0 2px 8px rgba(0,0,0,0.45);
+            border-radius:10px;
+        }
+        nav a.contact-btn:hover{
+            background:linear-gradient(90deg,#ffe08e,#ffbf33);
+            color:#1a1200;
+            box-shadow:0 20px 48px rgba(255,179,0,0.16),0 6px 18px rgba(0,0,0,0.45);
+        }
+        html[data-theme="light"] nav a.contact-btn{
+            background:linear-gradient(90deg,#ffd97a,#ffb300) !important;
+            color:#1a1200 !important;
+            border:1px solid rgba(0,0,0,0.12) !important;
+        }
+        html[data-theme="light"] nav a.contact-btn:hover{
+            background:linear-gradient(90deg,#ffe08e,#ffbf33) !important;
+            color:#1a1200 !important;
+        }
         .hero{
             display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,420px);gap:28px;align-items:center;padding:36px 0 64px;
         }
