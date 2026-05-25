@@ -1,0 +1,268 @@
+/* Shared responsive refinements for the Technostic Group site */
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    height: auto;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+@media (max-width: 1024px) {
+    .hero,
+    .package-top {
+        grid-template-columns: 1fr !important;
+    }
+
+    .features,
+    .services,
+    .service-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .team,
+    .plan-buttons,
+    .cta,
+    .stats {
+        flex-wrap: wrap;
+    }
+
+    .hero-card,
+    .panel,
+    .service,
+    .service-box,
+    .package-card,
+    .member,
+    .feature {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px !important;
+    }
+
+    .container,
+    .content {
+        max-width: 100%;
+        padding: 0 !important;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    nav,
+    .top-actions {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    nav a,
+    nav button,
+    .top-actions .button,
+    .top-actions button,
+    .cta .btn,
+    .cta button,
+    footer .btn {
+        min-height: 44px;
+    }
+
+    .hero {
+        gap: 18px;
+        padding: 24px 0 40px !important;
+    }
+
+    #contact > div,
+    section#contact > div {
+        grid-template-columns: 1fr !important;
+    }
+
+    .hero-card,
+    .panel,
+    .service-box,
+    .package-card,
+    .member,
+    .feature {
+        padding: 22px !important;
+    }
+
+    .features,
+    .services,
+    .service-list {
+        grid-template-columns: 1fr !important;
+    }
+
+    .team,
+    .plan-buttons {
+        flex-direction: column;
+    }
+
+    .team .member,
+    .plan-buttons .plan-btn {
+        width: 100%;
+    }
+
+    .package-top {
+        gap: 16px;
+    }
+
+    .price {
+        width: 100%;
+        min-width: 0;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 560px) {
+    body {
+        padding: 14px !important;
+    }
+
+    .brand,
+    header > div {
+        gap: 10px;
+    }
+
+    .logo {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    h1,
+    .title-group h1,
+    .package-top h1 {
+        font-size: clamp(26px, 8vw, 34px) !important;
+        line-height: 1.15;
+    }
+
+    .service-box h2,
+    .title-group h1 {
+        font-size: clamp(24px, 7vw, 30px) !important;
+    }
+
+    nav {
+        gap: 8px;
+    }
+
+    nav a {
+        display: inline-flex !important;
+        align-items: center;
+        margin-left: 0 !important;
+    }
+
+    nav a.primary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-card,
+    .panel,
+    .service-box,
+    .package-card,
+    .member,
+    .feature,
+    .content {
+        padding: 18px !important;
+    }
+
+    .cta,
+    .stats {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .stat {
+        width: 100%;
+    }
+
+    .input,
+    textarea,
+    input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 420px) {
+    body {
+        padding: 12px !important;
+    }
+
+    header {
+        gap: 12px;
+    }
+
+    .hero {
+        padding-bottom: 28px !important;
+    }
+
+    .hero-card,
+    .panel,
+    .service-box,
+    .package-card,
+    .member,
+    .feature {
+        border-radius: 16px;
+    }
+
+    footer {
+        font-size: 13px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .btn:hover,
+    .button:hover,
+    .plan-btn:hover,
+    .service-box:hover,
+    .service-item:hover,
+    .member:hover,
+    .feature:hover,
+    .package-card:hover,
+    .panel:hover,
+    .hero-card:hover {
+        transform: none !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
