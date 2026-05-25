@@ -4,10 +4,19 @@ html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
 }
 
 body {
     overflow-x: hidden;
+    min-width: 320px;
+    word-break: break-word;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 img,
@@ -26,6 +35,91 @@ textarea,
 select {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+}
+
+:where(
+    .container,
+    .content,
+    header,
+    footer,
+    .hero,
+    .package-top,
+    .hero-card,
+    .panel,
+    .service,
+    .service-box,
+    .package-card,
+    .member,
+    .feature,
+    .service-list,
+    .features,
+    .services,
+    .team,
+    .cta,
+    .stats,
+    .plan-buttons,
+    .top-actions,
+    nav
+) {
+    min-width: 0;
+}
+
+:where(
+    .hero,
+    .package-top,
+    .features,
+    .services,
+    .service-list,
+    .team,
+    .plan-buttons,
+    .cta,
+    .stats,
+    nav,
+    .top-actions,
+    footer
+) {
+    width: 100%;
+}
+
+:where(
+    .cta,
+    .stats,
+    .team,
+    .plan-buttons,
+    .top-actions,
+    footer,
+    nav
+) {
+    flex-wrap: wrap;
+}
+
+:where(
+    .hero-card,
+    .panel,
+    .service,
+    .service-box,
+    .package-card,
+    .member,
+    .feature
+) {
+    height: auto;
+}
+
+@media (min-width: 1280px) {
+    .container,
+    .content {
+        max-width: min(1180px, calc(100vw - 64px));
+    }
+
+    .hero {
+        gap: 32px;
+    }
+
+    .features,
+    .services,
+    .service-list {
+        gap: 18px;
+    }
 }
 
 @media (max-width: 1024px) {
