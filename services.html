@@ -5,11 +5,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Services — Technostic Group</title>
+<title>Packages — Technostic Group</title>
 
 <link rel="icon" type="image/png" href="assets/favicon.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/responsive.css">
 
 <style>
 
@@ -224,12 +225,21 @@ header{
         gap:20px;
     }
 
+    .top-actions{
+        width:100%;
+        flex-direction:column;
+    }
+
     .title-group h1{
         font-size:42px;
     }
 
     .service-box h2{
         font-size:28px;
+    }
+
+    .service-box{
+        padding:20px;
     }
 
     .plan-buttons{
@@ -241,19 +251,212 @@ header{
     }
 }
 
+@media(max-width:560px){
+
+    body{
+        padding:14px;
+    }
+
+    .title-group h1{
+        font-size:30px;
+    }
+
+    .service-box h2{
+        font-size:24px;
+    }
+}
+/* =========================
+   CYBER GLASSMORPHISM FX
+========================= */
+
+body{
+    position:relative;
+}
+
+/* Mouse glow */
+
+.mouse-glow{
+
+    position:fixed;
+
+    width:420px;
+    height:420px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,192,255,0.16) 0%,
+            rgba(229,57,53,0.10) 30%,
+            rgba(0,0,0,0) 75%
+        );
+
+    filter:blur(45px);
+
+    transform:
+        translate(-50%, -50%);
+
+    transition:
+        transform 0.08s linear;
+
+    mix-blend-mode:screen;
+}
+
+/* Lift important cards above glow */
+
+.hero-card,
+.panel,
+.service,
+.service-box,
+.package-card,
+.image-panel,
+.member,
+.feature{
+
+    position:relative;
+
+    z-index:2;
+
+    overflow:hidden;
+
+    backdrop-filter:blur(14px);
+
+    -webkit-backdrop-filter:blur(14px);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.06),
+            rgba(255,255,255,0.02)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.35),
+        inset 0 1px 1px rgba(255,255,255,0.04);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* Floating hover */
+
+.hero-card:hover,
+.panel:hover,
+.service:hover,
+.service-box:hover,
+.package-card:hover,
+.member:hover,
+.feature:hover{
+
+    transform:
+        translateY(-6px)
+        scale(1.01);
+
+    border-color:
+        rgba(0,192,255,0.25);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.45),
+        0 0 25px rgba(0,192,255,0.12);
+}
+
+/* Glass shine sweep */
+
+.hero-card::before,
+.panel::before,
+.service::before,
+.service-box::before,
+.package-card::before,
+.member::before,
+.feature::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120%;
+    left:-40%;
+
+    width:60%;
+    height:300%;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(255,255,255,0),
+            rgba(255,255,255,0.06),
+            rgba(255,255,255,0)
+        );
+
+    transform:
+        rotate(25deg);
+
+    transition:
+        transform 0.8s ease;
+
+    pointer-events:none;
+}
+
+.hero-card:hover::before,
+.panel:hover::before,
+.service:hover::before,
+.service-box:hover::before,
+.package-card:hover::before,
+.member:hover::before,
+.feature:hover::before{
+
+    transform:
+        rotate(25deg)
+        translateX(220%);
+}
+
+/* Custom controls & toast */
+#custom-toggle {
+    background: linear-gradient(135deg, var(--accent1), #0077b6);
+    color: white;
+    border-radius:28px;
+    padding:8px 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    font-size:14px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:none;
+    height:auto;
+    min-height:40px;
+}
+#custom-toggle::after{ content:'▾'; font-size:12px; opacity:0.95; }
+#goto-checkout { display:flex; justify-content:center; align-items:center; width:100%; border-radius:28px; padding:14px 26px; font-size:16px; text-decoration:none; }
+.service-label{ display:flex; align-items:center; gap:10px; padding:6px 8px; margin:0; font-size:15px; border-radius:8px; }
+.service-label input{ width:16px; height:16px; }
+.svc-price{ margin-left:auto; color:var(--muted); font-weight:700; }
+
+#toast{ position:fixed; right:20px; bottom:20px; background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8)); color:var(--text); padding:10px 14px; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.6); display:none; z-index:9999; border:1px solid rgba(255,255,255,0.06); }
+
 </style>
 
 </head>
 
 <body>
-
+<div class="mouse-glow"></div>
+<div id="toast"></div>
 <div class="container">
 
 <header>
 
     <div class="title-group">
 
-        <h1>Services</h1>
+        <h1>Packages</h1>
 
         <p>
             Technostic Group — Cybersecurity & Technology
@@ -265,6 +468,10 @@ header{
 
         <a href="index.html" class="button">
             ← Back to home
+        </a>
+
+        <a id="cart-link" href="checkout.html" class="button" title="View cart">
+            🛒 <span id="cart-count" style="margin-left:8px">0</span>
         </a>
 
         <button id="theme-toggle" class="button">
@@ -279,7 +486,7 @@ header{
 <div class="service-box">
 
     <h2>
-        Home / Personal Cybersecurity Services
+        Home / Personal Cybersecurity Packages
     </h2>
 
     <div class="plan-buttons">
@@ -300,18 +507,100 @@ header{
 
 </div>
 
+<!-- CUSTOM / ADD-ONS -->
+
+<div class="service-box" id="custom-box">
+
+    <h2>
+        Custom — Build your own package
+    </h2>
+
+    <div style="display:flex;gap:16px;align-items:flex-start;flex-direction:column;">
+
+        <button id="custom-toggle" class="plan-btn" style="min-width:unset;max-width:420px;">Select services </button>
+
+        <div id="custom-panel" style="display:none;max-width:920px;width:100%;">
+
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:8px;background:transparent;border-radius:12px;">
+
+                <!-- Home/personal style services -->
+                <label class="service-label"><input type="checkbox" value="Router Security Checking|₹499"> Router Security Checking <span class="svc-price">₹499</span></label>
+                <label class="service-label"><input type="checkbox" value="Password Strength Review|₹299"> Password Strength Review <span class="svc-price">₹299</span></label>
+                <label class="service-label"><input type="checkbox" value="Wi-Fi Encryption|₹599"> Wi-Fi Encryption <span class="svc-price">₹599</span></label>
+                <label class="service-label"><input type="checkbox" value="Guest Network Setup|₹299"> Guest Network Setup <span class="svc-price">₹299</span></label>
+                <label class="service-label"><input type="checkbox" value="Device Scanning|₹399"> Device Scanning <span class="svc-price">₹399</span></label>
+                <label class="service-label"><input type="checkbox" value="IoT Device Risk Check|₹499"> IoT Device Risk Check <span class="svc-price">₹499</span></label>
+                <label class="service-label"><input type="checkbox" value="Router Hardening|₹699"> Router Hardening <span class="svc-price">₹699</span></label>
+                <label class="service-label"><input type="checkbox" value="DNS / Privacy Setup|₹399"> DNS / Privacy Setup <span class="svc-price">₹399</span></label>
+                <label class="service-label"><input type="checkbox" value="Written Security Report|₹799"> Written Security Report <span class="svc-price">₹799</span></label>
+                <label class="service-label"><input type="checkbox" value="Remote Walkthrough & Support|₹999"> Remote Walkthrough & Support <span class="svc-price">₹999</span></label>
+                <label class="service-label"><input type="checkbox" value="Advanced Firewall Configuration|₹1299"> Advanced Firewall Configuration <span class="svc-price">₹1299</span></label>
+                <label class="service-label"><input type="checkbox" value="VPN Setup & Configuration|₹699"> VPN Setup & Configuration <span class="svc-price">₹699</span></label>
+                <label class="service-label"><input type="checkbox" value="Follow-Up Support (30 days)|₹199"> Follow-Up Support (30 days) <span class="svc-price">₹199</span></label>
+
+                <!-- Business style services -->
+                <label class="service-label"><input type="checkbox" value="Basic Network Assessment|₹1499"> Basic Network Assessment <span class="svc-price">₹1499</span></label>
+                <label class="service-label"><input type="checkbox" value="Open Port Scanning|₹999"> Open Port Scanning <span class="svc-price">₹999</span></label>
+                <label class="service-label"><input type="checkbox" value="Wi-Fi Security Review|₹799"> Wi-Fi Security Review <span class="svc-price">₹799</span></label>
+                <label class="service-label"><input type="checkbox" value="Weak Password Identification|₹599"> Weak Password Identification <span class="svc-price">₹599</span></label>
+                <label class="service-label"><input type="checkbox" value="Internal Vulnerability Reassessment|₹2499"> Internal Vulnerability Reassessment <span class="svc-price">₹2499</span></label>
+                <label class="service-label"><input type="checkbox" value="Network Mapping|₹899"> Network Mapping <span class="svc-price">₹899</span></label>
+                <label class="service-label"><input type="checkbox" value="Firewall Configuration Review|₹1199"> Firewall Configuration Review <span class="svc-price">₹1199</span></label>
+                <label class="service-label"><input type="checkbox" value="Security Recommendations & Best Practices|₹699"> Security Recommendations & Best Practices <span class="svc-price">₹699</span></label>
+                <label class="service-label"><input type="checkbox" value="Detailed Security Report with Actionable Insights|₹1999"> Detailed Security Report with Actionable Insights <span class="svc-price">₹1999</span></label>
+                <label class="service-label"><input type="checkbox" value="Periodic Security Audits (Monthly)|₹2499"> Periodic Security Audits (Monthly) <span class="svc-price">₹2499</span></label>
+                <label class="service-label"><input type="checkbox" value="Vulnerability Patching & Updates|₹1299"> Vulnerability Patching & Updates <span class="svc-price">₹1299</span></label>
+                <label class="service-label"><input type="checkbox" value="Exposure Monitoring & Threat Intelligence|₹1599"> Exposure Monitoring & Threat Intelligence <span class="svc-price">₹1599</span></label>
+                <label class="service-label"><input type="checkbox" value="Ongoing Security Consultation & Support|₹1999"> Ongoing Security Consultation & Support <span class="svc-price">₹1999</span></label>
+
+            </div>
+
+            <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;">
+
+    <button
+        id="add-selected"
+        class="plan-btn"
+        style="flex:1;min-width:250px;"
+    >
+        Add Selected to Cart
+    </button>
+
+    <a
+        href="checkout.html"
+        id="goto-checkout"
+        class="plan-btn"
+        style="
+            flex:1;
+            min-width:250px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-decoration:none;
+        "
+    >
+        Go to Checkout
+    </a>
+
+</div>
+
+        </div>
+
+    </div>
+
+</div>
+
 <!-- BUSINESS SECURITY -->
 
 <div class="service-box">
 
     <h2>
-        Business Cybersecurity Services
+        Business Cybersecurity Packages
     </h2>
 
     <div class="plan-buttons">
 
         <button class="plan-btn" onclick="location.href='stb.html'">
-            Standard
+            Standard 
         </button>
 
         <button class="plan-btn" onclick="location.href='professional.html'">
@@ -394,6 +683,114 @@ header{
     });
 
 })();
+
+</script>
+<script>
+
+/* =========================
+   SMOOTH SCROLL ANIMATIONS
+========================= */
+
+document.documentElement.style.scrollBehavior = "smooth";
+
+/* Elements to animate */
+
+const animatedElements = document.querySelectorAll(
+`
+.hero-card,
+.panel,
+.service,
+.service-box,
+.service-item,
+.member,
+.feature,
+.package-card,
+.image-panel,
+.content-panel,
+.stat,
+.plan-btn,
+.contact-form,
+h1,
+h2,
+p,
+footer
+`
+);
+
+/* Initial hidden state */
+
+animatedElements.forEach((el, index) => {
+
+    el.style.opacity = "0";
+    el.style.transform = "translateY(40px)";
+    el.style.filter = "blur(8px)";
+
+    el.style.transition = `
+        opacity 0.9s ease,
+        transform 0.9s ease,
+        filter 0.9s ease
+    `;
+
+    /* stagger effect */
+
+    el.style.transitionDelay = `${index * 0.05}s`;
+});
+
+/* Observer */
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+            entry.target.style.filter = "blur(0px)";
+
+            observer.unobserve(entry.target);
+        }
+
+    });
+
+}, {
+    threshold: 0.12
+});
+
+/* Observe all */
+
+animatedElements.forEach(el => observer.observe(el));
+
+</script>
+
+<script>
+// Cart & custom panel behavior
+function getCart(){try{return JSON.parse(localStorage.getItem('tech_cart')||'[]');}catch(e){return []}}
+function saveCart(c){localStorage.setItem('tech_cart',JSON.stringify(c));}
+function updateCartCount(){const el=document.getElementById('cart-count'); if(el) el.textContent = getCart().length;}
+function addToCart(item){const c=getCart(); c.push(item); saveCart(c); updateCartCount();}
+updateCartCount();
+
+function showToast(msg, timeout=2500){
+    const t = document.getElementById('toast');
+    if(!t) return; t.textContent = msg; t.style.display = 'block'; t.style.opacity = '1';
+    setTimeout(()=>{ t.style.transition='opacity 300ms'; t.style.opacity='0'; setTimeout(()=>{ t.style.display='none'; t.style.transition=''; },300); }, timeout);
+}
+
+document.getElementById('custom-toggle').addEventListener('click', ()=>{
+    const panel = document.getElementById('custom-panel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+});
+
+document.getElementById('add-selected').addEventListener('click', ()=>{
+    const checks = document.querySelectorAll('#custom-panel input[type=checkbox]:checked');
+    if(!checks.length){ showToast('Please select at least one service'); return; }
+    checks.forEach(ch => {
+        const [name,price] = ch.value.split('|');
+        addToCart({name: name.trim(), price: (price||'₹0').trim()});
+    });
+    showToast('Selected services added to cart');
+});
 
 </script>
 
