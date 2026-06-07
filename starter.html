@@ -10,6 +10,7 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/responsive.css">
 
 <style>
 
@@ -298,12 +299,214 @@ footer{
     }
 }
 
+@media(max-width:560px){
+
+    body{
+        padding:14px;
+    }
+
+    header{
+        gap:14px;
+    }
+
+    .brand{
+        gap:10px;
+    }
+
+    .logo{
+        width:44px;
+        height:44px;
+    }
+
+    .title-group h1{
+        font-size:30px;
+    }
+
+    .service-box{
+        padding:18px;
+        border-radius:18px;
+    }
+
+    .service-box h2{
+        font-size:24px;
+    }
+
+    .plan-buttons{
+        gap:12px;
+    }
+}
+
+@media(max-width:420px){
+
+    .title-group h1{
+        font-size:26px;
+    }
+
+    .button,
+    .plan-btn{
+        min-height:44px;
+    }
+}
+/* =========================
+   CYBER GLASSMORPHISM FX
+========================= */
+
+body{
+    position:relative;
+}
+
+/* Mouse glow */
+
+.mouse-glow{
+
+    position:fixed;
+
+    width:420px;
+    height:420px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,192,255,0.16) 0%,
+            rgba(229,57,53,0.10) 30%,
+            rgba(0,0,0,0) 75%
+        );
+
+    filter:blur(45px);
+
+    transform:
+        translate(-50%, -50%);
+
+    transition:
+        transform 0.08s linear;
+
+    mix-blend-mode:screen;
+}
+
+/* Lift important cards above glow */
+
+.hero-card,
+.panel,
+.service,
+.service-box,
+.package-card,
+.image-panel,
+.member,
+.feature{
+
+    position:relative;
+
+    z-index:2;
+
+    overflow:hidden;
+
+    backdrop-filter:blur(14px);
+
+    -webkit-backdrop-filter:blur(14px);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.06),
+            rgba(255,255,255,0.02)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.35),
+        inset 0 1px 1px rgba(255,255,255,0.04);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* Floating hover */
+
+.hero-card:hover,
+.panel:hover,
+.service:hover,
+.service-box:hover,
+.package-card:hover,
+.member:hover,
+.feature:hover{
+
+    transform:
+        translateY(-6px)
+        scale(1.01);
+
+    border-color:
+        rgba(0,192,255,0.25);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.45),
+        0 0 25px rgba(0,192,255,0.12);
+}
+
+/* Glass shine sweep */
+
+.hero-card::before,
+.panel::before,
+.service::before,
+.service-box::before,
+.package-card::before,
+.member::before,
+.feature::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120%;
+    left:-40%;
+
+    width:60%;
+    height:300%;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(255,255,255,0),
+            rgba(255,255,255,0.06),
+            rgba(255,255,255,0)
+        );
+
+    transform:
+        rotate(25deg);
+
+    transition:
+        transform 0.8s ease;
+
+    pointer-events:none;
+}
+
+.hero-card:hover::before,
+.panel:hover::before,
+.service:hover::before,
+.service-box:hover::before,
+.package-card:hover::before,
+.member:hover::before,
+.feature:hover::before{
+
+    transform:
+        rotate(25deg)
+        translateX(220%);
+}
 </style>
 
 </head>
 
 <body>
-
+<div class="mouse-glow"></div>
 <div class="container">
 
 <header>
@@ -325,6 +528,10 @@ footer{
 
     <a href="services.html" class="button">
         ← Back to Services
+    </a>
+
+    <a id="cart-link" href="checkout.html" class="button" title="View cart">
+        🛒 <span id="cart-count" style="margin-left:8px">0</span>
     </a>
 
     <button id="theme-toggle" class="button">
@@ -457,5 +664,113 @@ footer{
 })();
 
 </script>
+<script>
+// Cart helpers
+function getCart(){
+    try{return JSON.parse(localStorage.getItem('tech_cart')||'[]');}catch(e){return []}
+}
+function saveCart(c){localStorage.setItem('tech_cart',JSON.stringify(c));}
+function updateCartCount(){
+    const el=document.getElementById('cart-count');
+    if(el) el.textContent = getCart().length;
+}
+function addToCart(item){
+    const c=getCart(); c.push(item); saveCart(c); updateCartCount();
+}
+updateCartCount();
+
+// make price clickable
+document.addEventListener('DOMContentLoaded',()=>{
+    const priceEl=document.querySelector('.price');
+    if(priceEl){
+        priceEl.style.cursor='pointer';
+        priceEl.addEventListener('click',()=>{
+            const name = document.querySelector('h1')?.innerText?.trim() || 'Package';
+            const price = priceEl.innerText.trim();
+            addToCart({name,price});
+            // go to checkout
+            location.href='checkout.html';
+        });
+    }
+});
+</script>
+<script>
+
+/* =========================
+   SMOOTH SCROLL ANIMATIONS
+========================= */
+
+document.documentElement.style.scrollBehavior = "smooth";
+
+/* Elements to animate */
+
+const animatedElements = document.querySelectorAll(
+`
+.hero-card,
+.panel,
+.service,
+.service-box,
+.service-item,
+.member,
+.feature,
+.package-card,
+.image-panel,
+.content-panel,
+.stat,
+.plan-btn,
+.contact-form,
+h1,
+h2,
+p,
+footer
+`
+);
+
+/* Initial hidden state */
+
+animatedElements.forEach((el, index) => {
+
+    el.style.opacity = "0";
+    el.style.transform = "translateY(40px)";
+    el.style.filter = "blur(8px)";
+
+    el.style.transition = `
+        opacity 0.9s ease,
+        transform 0.9s ease,
+        filter 0.9s ease
+    `;
+
+    /* stagger effect */
+
+    el.style.transitionDelay = `${index * 0.05}s`;
+});
+
+/* Observer */
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+            entry.target.style.filter = "blur(0px)";
+
+            observer.unobserve(entry.target);
+        }
+
+    });
+
+}, {
+    threshold: 0.12
+});
+
+/* Observe all */
+
+animatedElements.forEach(el => observer.observe(el));
+
+</script>
+
 </body>
 </html>
