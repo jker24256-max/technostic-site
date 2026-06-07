@@ -16,11 +16,30 @@ body{background:var(--bg);color:var(--text);font-family:Orbitron,sans-serif;padd
 header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
 .button{height:44px;padding:0 18px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;font-family:Orbitron}
 .checkout-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px}
+.checkout-grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px}
+.checkout-form{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:20px}
+.checkout-section{margin-bottom:22px}
+.checkout-section h3{margin:0 0 16px;font-size:20px}
+.checkout-fields{display:grid;gap:14px;margin:0}
+.checkout-field{display:flex;flex-direction:column;gap:8px}
+.checkout-field label{color:var(--muted);font-size:13px}
+.checkout-field input,
+.checkout-field textarea{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;color:var(--text);font-family:Orbitron;padding:12px 14px;outline:none}
+.checkout-field input:focus,
+.checkout-field textarea:focus{border-color:rgba(0,192,255,0.75)}
+.order-summary{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:16px}
+.summary-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.summary-header h3{margin:0;font-size:20px}
+#summary-count{color:var(--muted);font-size:14px}
 .item{display:flex;justify-content:space-between;gap:12px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);margin-bottom:8px}
 .item .meta{flex:1}
 .item .actions{display:flex;gap:8px;align-items:center}
 .total{font-size:20px;font-weight:700;margin-top:12px}
-.plan-btn{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:white;border:none;padding:12px 18px;border-radius:12px;cursor:pointer}#toast{ position:fixed; right:20px; bottom:20px; background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8)); color:var(--text); padding:10px 14px; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.6); display:none; z-index:9999; border:1px solid rgba(255,255,255,0.06); }</style>
+.plan-btn{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:white;border:none;padding:12px 18px;border-radius:12px;cursor:pointer}
+.plan-btn:disabled{opacity:.55;cursor:not-allowed}
+.plan-btn.full-width{width:100%}
+.plan-btn.secondary{background:#444}
+#toast{ position:fixed; right:20px; bottom:20px; background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8)); color:var(--text); padding:10px 14px; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.6); display:none; z-index:9999; border:1px solid rgba(255,255,255,0.06); }</style>
 </head>
 <body>
 <div id="toast"></div>
@@ -35,11 +54,49 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 
 <div class="checkout-card">
     <h2>Your Cart</h2>
-    <div id="cart-list"></div>
-    <div class="total">Total: <span id="cart-total">₹0</span></div>
-    <div style="margin-top:12px;display:flex;gap:12px">
-        <button id="checkout-btn" class="plan-btn">Checkout (email)</button>
-        <button id="clear-btn" class="plan-btn" style="background:#444">Clear cart</button>
+    <div class="checkout-grid">
+        <div class="checkout-form">
+            <section class="checkout-section">
+                <h3>Contact information</h3>
+                <div class="checkout-fields">
+                    <div class="checkout-field">
+                        <label for="customer-name">Name</label>
+                        <input id="customer-name" type="text" placeholder="Your full name" autocomplete="name" required>
+                    </div>
+                    <div class="checkout-field">
+                        <label for="customer-email">Email</label>
+                        <input id="customer-email" type="email" placeholder="Your email" autocomplete="email" required>
+                    </div>
+                    <div class="checkout-field">
+                        <label for="customer-company">Company (optional)</label>
+                        <input id="customer-company" type="text" placeholder="Company name" autocomplete="organization">
+                    </div>
+                    <div class="checkout-field">
+                        <label for="customer-phone">Phone (optional)</label>
+                        <input id="customer-phone" type="tel" placeholder="Phone number" autocomplete="tel">
+                    </div>
+                </div>
+            </section>
+
+            <section class="checkout-section">
+                <h3>Order notes</h3>
+                <div class="checkout-field">
+                    <label for="customer-notes">Notes</label>
+                    <textarea id="customer-notes" rows="4" placeholder="Any additional details or requests"></textarea>
+                </div>
+            </section>
+        </div>
+
+        <aside class="order-summary">
+            <div class="summary-header">
+                <h3>Order summary</h3>
+                <div id="summary-count">0 items</div>
+            </div>
+            <div id="cart-list"></div>
+            <div class="total">Subtotal: <span id="cart-total">₹0</span></div>
+            <button id="checkout-btn" class="plan-btn full-width">Place order</button>
+            <button id="clear-btn" class="plan-btn secondary full-width">Clear cart</button>
+        </aside>
     </div>
 </div>
 
@@ -69,17 +126,23 @@ function render(){
     const list = document.getElementById('cart-list'); list.innerHTML='';
     const cart = getCart();
     let total = 0;
-    cart.forEach((it,idx)=>{
-        const tr = document.createElement('div'); tr.className='item';
-        const meta = document.createElement('div'); meta.className='meta'; meta.innerHTML = '<strong>'+it.name+'</strong><div style="color:var(--muted)">'+it.price+'</div>';
-        const actions = document.createElement('div'); actions.className='actions';
-        const rem = document.createElement('button'); rem.textContent='Remove'; rem.className='button'; rem.onclick=()=>{ cart.splice(idx,1); saveCart(cart); render(); };
-        actions.appendChild(rem);
-        tr.appendChild(meta); tr.appendChild(actions);
-        list.appendChild(tr);
-        total += parsePrice(it.price);
-    });
+    if(!cart.length){
+        list.innerHTML = '<div style="color:var(--muted);padding:18px;border:1px dashed rgba(255,255,255,0.2);border-radius:12px">Your cart is empty. Add services from the services page to continue.</div>';
+    } else {
+        cart.forEach((it,idx)=>{
+            const tr = document.createElement('div'); tr.className='item';
+            const meta = document.createElement('div'); meta.className='meta'; meta.innerHTML = '<strong>'+it.name+'</strong><div style="color:var(--muted)">'+it.price+'</div>';
+            const actions = document.createElement('div'); actions.className='actions';
+            const rem = document.createElement('button'); rem.textContent='Remove'; rem.className='button'; rem.onclick=()=>{ cart.splice(idx,1); saveCart(cart); render(); };
+            actions.appendChild(rem);
+            tr.appendChild(meta); tr.appendChild(actions);
+            list.appendChild(tr);
+            total += parsePrice(it.price);
+        });
+    }
     document.getElementById('cart-total').textContent = '₹'+Math.round(total);
+    document.getElementById('summary-count').textContent = cart.length + (cart.length === 1 ? ' item' : ' items');
+    document.getElementById('checkout-btn').disabled = !cart.length;
 }
 
 render();
@@ -88,16 +151,72 @@ document.getElementById('clear-btn').addEventListener('click', ()=>{ localStorag
 
 document.getElementById('checkout-btn').addEventListener('click', ()=>{
     const cart = getCart(); if(!cart.length){ showToast('Cart is empty'); return; }
-    let body = 'New service request from website\n\n';
+    const customerName = document.getElementById('customer-name').value.trim();
+    const customerEmail = document.getElementById('customer-email').value.trim();
+    const customerCompany = document.getElementById('customer-company').value.trim();
+    const customerPhone = document.getElementById('customer-phone').value.trim();
+    const customerNotes = document.getElementById('customer-notes').value.trim();
+    if(!customerName){ showToast('Please enter your name'); return; }
+    if(!customerEmail || !/^\S+@\S+\.\S+$/.test(customerEmail)){ showToast('Please enter a valid email'); return; }
     let total = 0;
-    cart.forEach((it,idx)=>{ body += (idx+1)+'. '+it.name+' - '+it.price+'\n'; total += parsePrice(it.price); });
-    body += '\nTotal: ₹'+Math.round(total)+'\n\nPlease contact the customer to confirm details.';
-    const subject = encodeURIComponent('New service request — Technostic Group');
-    const mailto = 'mailto:hacknosticgroup@gmail.com?subject='+subject+'&body='+encodeURIComponent(body);
-    // open mail client
-    window.location.href = mailto;
-    // optionally clear cart
+    let orderDetails = '';
+    cart.forEach((it,idx)=>{ orderDetails += (idx+1)+'. '+it.name+' - '+it.price+'\n'; total += parsePrice(it.price); });
+    const orderTotal = '₹'+Math.round(total);
+    const emailBody = [];
+    emailBody.push('Customer name: ' + customerName);
+    emailBody.push('Customer email: ' + customerEmail);
+    emailBody.push('Company: ' + (customerCompany||'N/A'));
+    emailBody.push('Phone: ' + (customerPhone||'N/A'));
+    emailBody.push('\nSelected services:');
+    emailBody.push(orderDetails);
+    emailBody.push('\nTotal: ' + orderTotal);
+    if(customerNotes) emailBody.push('\nNotes: ' + customerNotes);
+    emailBody.push('\n---\nThis request was generated from the Technostic Group checkout page.');
+
+    // save current order so confirmation page can display it
+    const lastOrder = {
+        customer_name: customerName,
+        customer_email: customerEmail,
+        customer_company: customerCompany || 'N/A',
+        customer_phone: customerPhone || 'N/A',
+        customer_notes: customerNotes || '',
+        order_details: orderDetails,
+        order_total: orderTotal,
+        created_at: new Date().toISOString()
+    };
+    // save last order
+    try{ localStorage.setItem('last_order', JSON.stringify(lastOrder)); }catch(e){}
+    // clear cart client-side now
     localStorage.removeItem('tech_cart');
+    render();
+
+    // send email via Formspree
+    const formspreeData = {
+        name: customerName,
+        email: customerEmail,
+        company: customerCompany || 'N/A',
+        phone: customerPhone || 'N/A',
+        services: orderDetails,
+        total: orderTotal,
+        notes: customerNotes || '',
+        message: emailBody.join('\n')
+    };
+
+    fetch('https://formspree.io/f/mbdegblw', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formspreeData)
+    })
+    .then(res => {
+        console.log('Email sent to Formspree');
+        // redirect to confirmation page after email sent
+        window.location.href = 'order-confirmation.html';
+    })
+    .catch(err => {
+        console.warn('Formspree error:', err);
+        // still redirect even if email fails
+        window.location.href = 'order-confirmation.html';
+    });
 });
 </script>
 </body>
