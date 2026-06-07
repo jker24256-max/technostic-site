@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Checkout — Technostic Group</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/responsive.css">
+<style>
+:root{--bg:#04060b;--text:#eaf6ff;--muted:#9fb4c9;--card:#071027;--border:rgba(255,255,255,0.08);--accent1:#00c0ff;--accent2:#e53935;color-scheme:dark}
+html[data-theme="light"]{--bg:#f5f5f5;--text:#041226;--muted:#64748b;--card:#ffffff;--border:rgba(0,0,0,0.08);color-scheme:light}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:Orbitron,sans-serif;padding:32px}
+.container{max-width:1100px;margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.button{height:44px;padding:0 18px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;font-family:Orbitron}
+.checkout-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px}
+.item{display:flex;justify-content:space-between;gap:12px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);margin-bottom:8px}
+.item .meta{flex:1}
+.item .actions{display:flex;gap:8px;align-items:center}
+.total{font-size:20px;font-weight:700;margin-top:12px}
+.plan-btn{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:white;border:none;padding:12px 18px;border-radius:12px;cursor:pointer}#toast{ position:fixed; right:20px; bottom:20px; background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8)); color:var(--text); padding:10px 14px; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.6); display:none; z-index:9999; border:1px solid rgba(255,255,255,0.06); }</style>
+</head>
+<body>
+<div id="toast"></div>
+<div class="container">
+<header>
+    <div><strong>Technostic Group</strong><div style="color:var(--muted);font-size:13px">Checkout</div></div>
+    <div style="display:flex;gap:12px;align-items:center">
+        <a href="services.html" class="button">← Back to services</a>
+        <button id="theme-toggle" class="button"></button>
+    </div>
+</header>
+
+<div class="checkout-card">
+    <h2>Your Cart</h2>
+    <div id="cart-list"></div>
+    <div class="total">Total: <span id="cart-total">₹0</span></div>
+    <div style="margin-top:12px;display:flex;gap:12px">
+        <button id="checkout-btn" class="plan-btn">Checkout (email)</button>
+        <button id="clear-btn" class="plan-btn" style="background:#444">Clear cart</button>
+    </div>
+</div>
+
+</div>
+<script>
+(function(){
+    const htmlEl=document.documentElement;
+    const toggle=document.getElementById('theme-toggle');
+    const saved=localStorage.getItem('theme');
+    const prefersDark=window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial=saved || (prefersDark ? 'dark' : 'light');
+    htmlEl.setAttribute('data-theme', initial);
+    toggle.innerHTML = initial==='light' ? '☀️' : '🌙';
+    toggle.addEventListener('click', ()=>{
+        const current=htmlEl.getAttribute('data-theme');
+        const next = current==='light' ? 'dark' : 'light';
+        htmlEl.setAttribute('data-theme', next); localStorage.setItem('theme', next); toggle.innerHTML = next==='light' ? '☀️' : '🌙';
+    });
+})();
+
+function getCart(){try{return JSON.parse(localStorage.getItem('tech_cart')||'[]');}catch(e){return []}}
+function saveCart(c){localStorage.setItem('tech_cart',JSON.stringify(c));}
+function parsePrice(p){ if(!p) return 0; const m = p.replace(/[^0-9.]/g,''); return parseFloat(m)||0 }
+function showToast(msg, timeout=2200){ const t = document.getElementById('toast'); if(!t) return; t.textContent=msg; t.style.display='block'; t.style.opacity='1'; setTimeout(()=>{ t.style.transition='opacity 300ms'; t.style.opacity='0'; setTimeout(()=>{ t.style.display='none'; t.style.transition=''; },300); }, timeout); }
+
+function render(){
+    const list = document.getElementById('cart-list'); list.innerHTML='';
+    const cart = getCart();
+    let total = 0;
+    cart.forEach((it,idx)=>{
+        const tr = document.createElement('div'); tr.className='item';
+        const meta = document.createElement('div'); meta.className='meta'; meta.innerHTML = '<strong>'+it.name+'</strong><div style="color:var(--muted)">'+it.price+'</div>';
+        const actions = document.createElement('div'); actions.className='actions';
+        const rem = document.createElement('button'); rem.textContent='Remove'; rem.className='button'; rem.onclick=()=>{ cart.splice(idx,1); saveCart(cart); render(); };
+        actions.appendChild(rem);
+        tr.appendChild(meta); tr.appendChild(actions);
+        list.appendChild(tr);
+        total += parsePrice(it.price);
+    });
+    document.getElementById('cart-total').textContent = '₹'+Math.round(total);
+}
+
+render();
+
+document.getElementById('clear-btn').addEventListener('click', ()=>{ localStorage.removeItem('tech_cart'); render(); showToast('Cart cleared'); });
+
+document.getElementById('checkout-btn').addEventListener('click', ()=>{
+    const cart = getCart(); if(!cart.length){ showToast('Cart is empty'); return; }
+    let body = 'New service request from website\n\n';
+    let total = 0;
+    cart.forEach((it,idx)=>{ body += (idx+1)+'. '+it.name+' - '+it.price+'\n'; total += parsePrice(it.price); });
+    body += '\nTotal: ₹'+Math.round(total)+'\n\nPlease contact the customer to confirm details.';
+    const subject = encodeURIComponent('New service request — Technostic Group');
+    const mailto = 'mailto:hacknosticgroup@gmail.com?subject='+subject+'&body='+encodeURIComponent(body);
+    // open mail client
+    window.location.href = mailto;
+    // optionally clear cart
+    localStorage.removeItem('tech_cart');
+});
+</script>
+</body>
+</html>
