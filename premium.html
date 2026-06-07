@@ -10,6 +10,7 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/responsive.css">
 
 <style>
 
@@ -327,6 +328,10 @@ footer{
         ← Back to Services
     </a>
 
+    <a id="cart-link" href="checkout.html" class="button" title="View cart">
+        🛒 <span id="cart-count" style="margin-left:8px">0</span>
+    </a>
+
     <button id="theme-toggle" class="button">
     </button>
 
@@ -491,6 +496,20 @@ footer{
 
 })();
 
+</script>
+<script>
+function getCart(){try{return JSON.parse(localStorage.getItem('tech_cart')||'[]');}catch(e){return []}}
+function saveCart(c){localStorage.setItem('tech_cart',JSON.stringify(c));}
+function updateCartCount(){const el=document.getElementById('cart-count'); if(el) el.textContent = getCart().length;}
+function addToCart(item){const c=getCart(); c.push(item); saveCart(c); updateCartCount();}
+updateCartCount();
+document.addEventListener('DOMContentLoaded',()=>{
+    const priceEl=document.querySelector('.price');
+    if(priceEl){priceEl.style.cursor='pointer'; priceEl.addEventListener('click',()=>{
+        const name = document.querySelector('h1')?.innerText?.trim() || 'Package';
+        const price = priceEl.innerText.trim(); addToCart({name,price}); location.href='checkout.html';
+    });}
+});
 </script>
 </body>
 </html>
