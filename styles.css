@@ -724,20 +724,22 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  padding: 14px 16px;
+  gap: 12px;
+  padding: 12px 14px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   cursor: pointer;
   color: var(--text);
+  font-size: 0.94rem;
 }
 
 .service-option-main {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   min-width: 0;
+  flex: 1 1 auto;
 }
 
 .service-option input[type="checkbox"] {
@@ -747,15 +749,29 @@ img {
   flex: 0 0 auto;
 }
 
-.service-option span {
+.service-option-main > span {
+  display: block;
   min-width: 0;
+  flex: 1 1 auto;
+  max-width: 100%;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  line-height: 1.2;
 }
 
 .service-price {
   color: rgba(238, 242, 255, 0.84);
   font-weight: 700;
+  flex: 0 0 auto;
+  min-width: 72px;
+  margin-left: 8px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.92rem;
   white-space: nowrap;
 }
+
 
 .selection-status {
   margin: 0;
