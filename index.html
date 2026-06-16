@@ -1,570 +1,151 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <title>Technostic Group — Protection. Peace. Prosperity.</title>
-    <meta name="description" content="Technostic Group — Cybersecurity, Network Security, and data-protection for startups and enterprises." />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/responsive.css">
-    <style>
-        :root{
-            --bg:#04060b;
-            --card:#071027;
-            --accent-1:#e53935; /* neon red */
-            --accent-2:#00c0ff; /* electric blue */
-            --accent: linear-gradient(90deg,var(--accent-1),var(--accent-2));
-            --muted:#9fb4c9;
-            --glass: rgba(255,255,255,0.03);
-            --radius:12px;
-            color-scheme: dark;
-        }
-        *{box-sizing:border-box}
-        html,body{height:100%}
-        body{
-            margin:0;
-            font-family:Orbitron, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            background:
-                radial-gradient(1200px 400px at 10% 10%, rgba(0,192,255,0.06), transparent),
-                radial-gradient(900px 300px at 95% 80%, rgba(229,57,53,0.05), transparent),
-                linear-gradient(180deg,#030516 0%,var(--bg) 100%);
-            color: var(--body-color);
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
-            line-height:1.45;
-            transition:
-            background 0.35s ease,
-            background-color 0.35s ease,
-            color 0.35s ease;
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Technostics Group | Cyber Defense That Moves Faster</title>
+    <meta name="description" content="Technostics Group delivers cyber risk audits, managed SOC, penetration testing, and incident response for modern businesses." />
+    <link rel="icon" href="assets/favicon.ico" />\r\n    <link rel="stylesheet" href="styles.css" />
+    <script defer src="main.js"></script>
+  </head>
+  <body data-page="home">
+    <div class="cursor" aria-hidden="true"></div>
+    <video class="bg-video" autoplay muted loop playsinline aria-hidden="true">
+      <source src="assets/Video%20Project%204.mp4" type="video/mp4" />
+    </video>
+    <div class="bg-overlay" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Technostics Group</span>
+        </a>
+        <nav class="nav-links" data-nav-links>
+          <a href="services.html">Services</a>
+          <a href="team.html">Team</a>
+          <a href="cart.html">Cart <span class="cart-badge" data-cart-count style="display:none">0</span></a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-secondary" href="checkout.html">Checkout</a>
+          <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">â˜°</button>
+        </div>
+      </div>
+    </header>
 
-        /* Light theme overrides */
-        html[data-theme="light"]{
-            --bg:#ffffff; /* pure white background as requested */
-            --card:#ffffff;
-            --accent-1:#0ea5e9;
-            --accent-2:#ef4444;
-            --muted:#3373cc;
-            --glass: rgba(46, 49, 62, 0.03);
-            --body-color: #2c3436;
-            color-scheme: light;
-        }
-        html[data-theme="light"] .lead
-        {
-        color:#f1f5f9;
-        }html[data-theme="light"] .hero-card
-        {
-        color:#f1f5f9;
-        }
-        html[data-theme="light"] #contact .hero-card,
-        html[data-theme="light"] #contact .hero-card *{
-            color:#041226;
-        }
-        html[data-theme="light"] #contact .hero-card [style*="color:var(--muted)"]{
-            color:#041226 !important;
-        }
-        html[data-theme="light"] #contact .hero-card .input::placeholder,
-        html[data-theme="light"] #contact .hero-card textarea::placeholder{
-            color:#64748b !important;
-        }
-        html[data-theme="light"] #contact .hero-card .btn.contact-btn{
-            color:#1a1200;
-        }
-   html[data-theme="light"] aside.hero-card{
-    color:#ffffff;
-}
-html[data-theme="light"] .panel-body{
-    color:#041226;
-}
-html[data-theme="light"] .panel-body > div{
-    color:#041226;
-}
-.terminal-header{
-    color:#00ff88 !important;
-}
-
-.terminal-content p{
-    color:#00ff88 !important;
-}
-        html[data-theme="light"] .hero-card .btn.ghost
-        {
-         color:#f8fafc;
-
-         border:1px solid rgba(255,255,255,0.12);
-
-         background:rgba(255,255,255,0.04);
-        }
-        html[data-theme="light"] #theme-toggle{
-    color:#041226;
-}
-
-        /* Ensure body uses plain background in light mode (override gradients) */
-        html[data-theme="light"] body{
-            background: var(--bg) !important;
-            background-image: none !important;
-            background-color: var(--bg) !important;
-            color: var(--body-color) !important;
-        }
-
-        /* Icon styles for the theme toggle */
-        #theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:36px;padding:6px}
-        #theme-toggle svg{width:18px;height:18px;display:block}
-
-        /* default body text color variable */
-        :root{--body-color:#eaf6ff}
-        .container{max-width:1100px;margin:0 auto;padding:28px;}
-        header{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:16px;flex-wrap:nowrap}
-        .brand{
-    display:flex;
-    gap:22px;
-    align-items:center;
-    min-width:0;
-}
-   .logo{
-    width:72px;
-    height:72px;
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    flex-shrink:0;
-
-    box-shadow:
-        0 6px 18px rgba(0,0,0,0.35),
-        0 2px 8px rgba(0,192,255,0.12);
-}
-
-.logo img{
-    width:150%;
-    height:150%;
-
-    object-fit:cover;
-
-    transform:scale(1.18);
-
-    display:block;
-}
-        /* Use Orbitron for headings and UI */
-        h1, .logo { font-family: Orbitron, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
-        nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-left:auto}
-        nav a{color:var(--muted);text-decoration:none;margin-left:0;font-weight:600;display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;transition:background .2s ease,color .2s ease,transform .2s ease}
-        nav a:hover{background:rgba(255,255,255,0.05);color:#fff;transform:translateY(-1px)}
-        nav a.primary{background:linear-gradient(90deg,var(--accent-2),var(--accent-1));color:#041226;padding:8px 14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,192,255,0.06)}
-        nav a.contact-btn{
-            background:linear-gradient(90deg,#ffd97a,#ffb300);
-            color:#1a1200;
-            border:1px solid rgba(0,0,0,0.12);
-            box-shadow:0 10px 30px rgba(255,179,0,0.10),0 2px 8px rgba(0,0,0,0.45);
-            border-radius:10px;
-        }
-        nav a.contact-btn:hover{
-            background:linear-gradient(90deg,#ffe08e,#ffbf33);
-            color:#1a1200;
-            box-shadow:0 20px 48px rgba(255,179,0,0.16),0 6px 18px rgba(0,0,0,0.45);
-        }
-        html[data-theme="light"] nav a.contact-btn{
-            background:linear-gradient(90deg,#ffd97a,#ffb300) !important;
-            color:#1a1200 !important;
-            border:1px solid rgba(0,0,0,0.12) !important;
-        }
-        html[data-theme="light"] nav a.contact-btn:hover{
-            background:linear-gradient(90deg,#ffe08e,#ffbf33) !important;
-            color:#1a1200 !important;
-        }
-        .hero{
-            display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,420px);gap:28px;align-items:center;padding:36px 0 64px;
-        }
-        .hero-card{
-            background:linear-gradient(180deg, rgba(8,14,30,0.6), rgba(3,6,18,0.6));
-            border-radius:var(--radius);padding:34px;box-shadow:0 12px 40px rgba(0,0,0,0.7),0 6px 30px rgba(0,192,255,0.03) inset;
-        }
-        aside.hero-card{font-size:15px;line-height:1.6;color:var(--muted)}
-        h1{margin:0;font-size:clamp(28px,4vw,34px);letter-spacing:-0.4px;line-height:1.1}
-        .lead{color:var(--muted);margin-top:10px;font-size:15px}
-        .cta{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
-        button, input[type="button"], input[type="submit"], .btn{
-            font-family: Orbitron, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial !important;
-            padding:12px 18px;border-radius:10px;border:0;font-weight:700;cursor:pointer;
-            background:var(--accent);color:#041226;box-shadow:0 10px 30px rgba(0,192,255,0.06),0 6px 18px rgba(0,0,0,0.6);
-            transition:transform .12s ease,box-shadow .12s ease;
-        }
-        /* Extra-specific rule for footer and ghost buttons to ensure Inter applies */
-        footer .btn, .btn.ghost{font-family:Orbitron, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial !important; font-weight:600 !important;}
-        .btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,192,255,0.12),0 8px 24px rgba(0,0,0,0.6)}
-        .contact-btn{background:linear-gradient(90deg,#ffd97a,#ffb300);color:#1a1200;border:1px solid rgba(0,0,0,0.12);box-shadow:0 10px 30px rgba(255,179,0,0.10),0 2px 8px rgba(0,0,0,0.45);} 
-        .contact-btn:hover{transform:translateY(-3px);box-shadow:0 20px 48px rgba(255,179,0,0.16),0 6px 18px rgba(0,0,0,0.45)}
-        .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-        .stats{display:flex;gap:16px;margin-top:20px}
-        .stat{background:var(--glass);padding:10px 14px;border-radius:10px;font-weight:700;color:#dbeafe}
-        .panel{
-            border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.06));
-            height:100%;
-            display:flex;flex-direction:column;border:1px solid rgba(0,192,255,0.04);
-        }
-        .cover{
-            background-image:linear-gradient(180deg,rgba(0,0,0,0.25),rgba(0,0,0,0.6)),url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=');
-            background-size:cover;background-position:center;height:160px;filter:contrast(1.05) saturate(1.05);
-            position:relative;
-        }
-        .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.5))}
-        .panel-body{padding:18px;display:flex;flex-direction:column;gap:10px}
-        .features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0}
-        .feature{background:var(--card);padding:16px;border-radius:10px;font-size:14px}
-        .feature svg{width:22px;height:22px;vertical-align:middle;margin-right:10px}
-        .services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:28px 0}
-        .service{background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);padding:18px;border-radius:12px;border:1px solid rgba(0,192,255,0.03)}
-        .team{display:flex;gap:14px;margin-top:18px;flex-wrap:wrap}
-        .member{background:var(--card);padding:12px;border-radius:10px;display:flex;gap:12px;align-items:center}
-        .avatar{width:56px;height:56px;border-radius:10px;flex:0 0 56px;overflow:hidden;border:1px solid rgba(0,0,0,0.5)}
-        .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-        footer{border-top:1px solid rgba(0,192,255,0.03);padding:20px 0;margin-top:40px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-        /* responsive */
-        @media (max-width:980px){
-            .hero{grid-template-columns:1fr;padding:20px 0}
-            .services{grid-template-columns:repeat(2,minmax(0,1fr))}
-            .features{grid-template-columns:repeat(2,minmax(0,1fr))}
-            .team{flex-direction:column}
-            .member{width:100%}
-        }
-        @media (max-width:560px){
-            .features{grid-template-columns:1fr}
-            .services{grid-template-columns:1fr}
-            header{flex-wrap:wrap}
-            nav{width:100%;justify-content:flex-start;margin-left:0}
-            nav a{display:inline-flex;flex:1 1 auto;justify-content:flex-start}
-            nav a.primary{width:100%;justify-content:center}
-            .brand{gap:8px}
-            .logo{width:44px;height:44px}
-            h1{font-size:26px}
-            .cta,.stats{flex-direction:column;align-items:stretch}
-            .stat{width:100%}
-            footer{align-items:flex-start}
-        }
-        .contact-form{display:flex;flex-direction:column;gap:8px}
-        .input,textarea{background:transparent;border:1px solid rgba(0,192,255,0.06);padding:10px;border-radius:8px;color:inherit}
-        /* Light mode form text fix */
-        html[data-theme="light"] .input,
-        html[data-theme="light"] textarea{
-        color:#041226;
-        background:#ffffff;
-        border:1px solid rgba(0,0,0,0.12);
-}
-
-/* Placeholder text */
-html[data-theme="light"] .input::placeholder,
-html[data-theme="light"] textarea::placeholder{
-    color:#64748b;
-}
-        textarea{min-height:100px;resize:vertical}
-        /* Smooth theme animations */
-.hero-card,
-.panel,
-.service,
-.feature,
-.member,
-.stat,
-.btn,
-.input,
-textarea,
-nav a,
-footer,
-.logo{
-    transition:
-        background 0.35s ease,
-        background-color 0.35s ease,
-        color 0.35s ease,
-        border-color 0.35s ease,
-        box-shadow 0.35s ease;
-}
-.terminal-box{
-
-    margin-top:22px;
-
-    background:#000000;
-
-    border-radius:14px;
-
-    overflow:hidden;
-
-    border:1px solid rgba(0,255,120,0.25);
-
-    box-shadow:
-        0 0 20px rgba(0,255,120,0.08),
-        0 10px 30px rgba(0,0,0,0.35);
-}
-
-.terminal-header{
-
-    padding:10px 16px;
-
-    background:rgba(0,255,120,0.08);
-
-    color:#00ff88;
-
-    font-size:12px;
-
-    letter-spacing:2px;
-
-    border-bottom:1px solid rgba(0,255,120,0.15);
-}
-
-.terminal-content{
-
-    padding:18px;
-
-    font-family:monospace;
-
-    color:#00ff88 !important;
-
-    font-size:13px;
-
-    line-height:1.8;
-}
-
-.terminal-content p{
-    margin:0 0 8px 0;
-}
-
-.blink{
-    animation:blinkAnim 1s infinite;
-}
-
-@keyframes blinkAnim{
-
-    0%{
-        opacity:1;
-    }
-
-    50%{
-        opacity:0.3;
-    }
-
-    100%{
-        opacity:1;
-    }
-}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <div class="brand">
-                <div class="logo"><img src="assets/logo.jpeg" alt="Technostics Logo"></div>
-                <div>
-                    <div style="font-weight:700">Technostic Group</div>
-                        <div style="font-size:13px;color:var(--muted)">Cybersecurity • Network Defense • Risk Assessment</div>
-                </div>
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div data-reveal>
+            <div class="eyebrow">AI-assisted defense, built for real-world threats</div>
+            <h1>Cybersecurity built to <span class="gradient-text">anticipate, detect, and contain</span>.</h1>
+            <p>Technostics Group helps growing teams and enterprise environments harden infrastructure, watch for active threats, and respond with speed when pressure is highest.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="services.html">Explore Services</a>
+              <a class="btn btn-secondary" href="checkout.html">Start an Order</a>
             </div>
-            <nav>
-                <a href="#services">Services</a>
-                <a href="#team">Team</a>
-                <a href="#contact" class="btn contact-btn">Contact</a>
-                <button id="theme-toggle" class="btn ghost" type="button" aria-label="Toggle theme" title="Toggle theme"></button>
-            </nav>
-        </header>
-
-        <section class="hero">
-            <div class="hero-card">
-                <h1>Securing networks and protecting digital infrastructure that matters</h1>
-                <p class="lead">The Technostic Group is a technology and cybersecurity service provider focused on helping individuals and businesses strengthen their digital security infrastructure. The company specializes in network security, vulnerability assessment, Wi-Fi and router protection, penetration testing, and system analysis. With a practical and client-focused approach, The Technostic Group aims to deliver reliable, efficient, and modern cybersecurity solutions tailored to both personal and commercial environments.</p>
-                <div class="cta">
-                    <button class="btn ghost" type="button" onclick="location.href='services.html'">View Services</button>
-                </div>
-                
-
+            <div class="hero-stats">
+              <div class="stat-card" data-reveal>
+                <strong>24/7</strong>
+                <span>Monitoring across endpoints, identity, and cloud workloads</span>
+              </div>
+              <div class="stat-card" data-reveal>
+                <strong>90 min</strong>
+                <span>Average incident response kickoff after escalation</span>
+              </div>
+              <div class="stat-card" data-reveal>
+                <strong>Zero trust</strong>
+                <span>Architecture guidance, policy design, and rollout support</span>
+              </div>
             </div>
+          </div>
 
-            <aside class="panel" aria-label="Showcase">
-                <div class="cover"></div>
-                <div class="panel-body">
-                    <div style="display:flex;justify-content:space-between;align-items:center">
-                        <div>
-                            <div style="font-weight:700">Trusted by fast-growing teams</div>
-                            <div style="color:var(--muted);font-size:13px;margin-top:6px">From private networks to enterprises - All Secured.</div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="terminal-box">
-
-    <div class="terminal-header">
-        SYSTEM STATUS
-    </div>
-
-    <div class="terminal-content">
-
-        <p>> Initializing secure gateway...</p>
-
-        <p>> Firewall protection enabled</p>
-
-        <p>> Monitoring incoming traffic...</p>
-
-        <p>> Threat detection active</p>
-
-        <p>> Encryption protocols secured</p>
-
-        <p class="blink">> SYSTEM ONLINE_</p>
-
-    </div>
-
-</div>
-                </div>
-            </aside>
-        </section>
-
-        <section id="services" class="container" style="padding:0">
-            <h2 style="margin:0 0 12px 0">Cybersecurity Services</h2>
-            <p style="color:var(--muted);margin:0 0 18px 0">Specialized security services for businesses and home users — protection, assessment, and response.</p>
-            <div class="services">
-                <div class="service"><div style="font-weight:700">Network Security Audits</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Comprehensive review of network architecture and controls.</div></div>
-                <div class="service"><div style="font-weight:700">Wi-Fi Security & Router Protection</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Secure wireless networks and harden home/office routers.</div></div>
-                <div class="service"><div style="font-weight:700">Vulnerability Assessment</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Automated scanning and prioritized vulnerability reporting.</div></div>
-                <div class="service"><div style="font-weight:700">Website & Server Security</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Harden web apps, servers and deployment pipelines.</div></div>
-                <div class="service"><div style="font-weight:700">Penetration Testing</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Simulated attacks to identify exploitable weaknesses.</div></div>
-                <div class="service"><div style="font-weight:700">Firewall Configuration</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Design and tune firewall rules for optimal protection.</div></div>
-                <div class="service"><div style="font-weight:700">Threat Monitoring</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Continuous detection and alerting for suspicious activity.</div></div>
-                <div class="service"><div style="font-weight:700">Digital Privacy Consulting</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Advice and controls to protect privacy and sensitive data.</div></div>
-                <div class="service"><div style="font-weight:700">Malware & Suspicious Activity Analysis</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Investigation and remediation of malicious software events.</div></div>
-                <div class="service"><div style="font-weight:700">Small Business Cybersecurity Solutions</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Affordable security packages tailored for small teams.</div></div>
-                <div class="service"><div style="font-weight:700">Home Network Protection</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Setup and guidance to secure home devices and IoT.</div></div>
-                <div class="service"><div style="font-weight:700">Remote Security Support</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Live assistance for incidents and configuration help.</div></div>
-                <div class="service"><div style="font-weight:700">Security Hardening for Systems & Devices</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Best-practice hardening for servers, desktops, and IoT.</div></div>
-                <div class="service"><div style="font-weight:700">Basic Cybersecurity Awareness Guidance</div><div style="color:var(--muted);font-size:13px;margin-top:8px">Training and simple policies to reduce human risk.</div></div>
+          <div class="hero-visual" data-reveal>
+            <div class="orb-shell" data-hero-shell>
+              <div class="scan-line"></div>
+              <div class="orb-halo"></div>
+              <div class="orb-ring"></div>
+              <div class="orb-grid"></div>
+              <div class="orb-core"></div>
+              <div class="float-node n1" aria-hidden="true"></div>
+              <div class="float-node n2" aria-hidden="true"></div>
+              <div class="float-node n3" aria-hidden="true"></div>
+              <div class="float-node n4" aria-hidden="true"></div>
             </div>
-        </section>
-
-        <section id="team" style="margin-top:8px">
-            <h2 style="margin:0 0 12px 0">Leadership & Core Team</h2>
-            <div style="color:var(--muted);margin-bottom:12px">Experienced CyberSecurity Engineers.</div>
-            <div class="team">
-                <div class="member" aria-label="Team member: Abdul Muhaymin Nawaz, Founder & CEO">
-                    <div class="avatar"><img src="assets/amn.jpg" alt="Abdul Muhaymin Nawaz, Founder & CEO"></div>
-                    <div>
-                        <button class="btn ghost" type="button" onclick="location.href='abdul.html'">Abdul Muhaymin Nawaz</button>
-                        <div style="font-size:13px;color:var(--muted)">Founder</div>
-                    </div>
-                </div>
-
-                <div class="member" aria-label="Team member: Murtuza Broachwala, CEO">
-                    <div class="avatar"><img src="assets/mkb.jpg.jpeg" alt="Murtuza Broachwala, CEO"></div>
-                    <div>
-                        <button class="btn ghost" type="button" onclick="location.href='mkb.html'">Murtuza Broachwala</button>
-                        <div style="font-size:13px;color:var(--muted)">CEO</div>
-                    </div>
-                </div>
-                <div class="member" aria-label="Team member: Alyaan Ahmed, CTO">
-                    <div class="avatar"><img src="assets/ala.jpg" alt="Alyaan Ahmed, CTO"></div>
-                    <div>
-                        <button class="btn ghost" type="button" onclick="location.href='aly.html'">Alyaan Ahmed</button>
-                        <div style="font-size:13px;color:var(--muted)">CTO</div>
-                    </div>
-                </div>
+            <div class="hero-panel">
+              <strong>98.7%</strong>
+              <p>Threat detection coverage with tuned alert triage</p>
+              <hr style="border-color: rgba(255,255,255,0.08); border-style: solid; margin: 18px 0" />
+              <strong>120+</strong>
+              <p>Security controls reviewed across industries</p>
             </div>
-        </section>
+            <div class="scroll-hint"><span></span>Scroll to explore</div>
+          </div>
+        </div>
+      </section>
 
-        <section id="contact" style="margin-top:28px">
-            <h2 style="margin:0 0 12px 0">Get in touch</h2>
-            <div style="color:var(--muted);margin-bottom:12px">Tell us about your challenge — we'll propose a plan.</div>
-            <div style="display:grid;grid-template-columns:1fr 360px;gap:18px">
-                <form class="hero-card contact-form" action="https://formspree.io/f/meenywqe" method="POST">
-                    <input class="input" name="name" type="text" placeholder="Your name" required />
-                    <input class="input" name="email" type="email" placeholder="Business email" required />
-                    <input class="input" name="company" type="text" placeholder="Company / Website" />
-                    <input class="input" name="phone" type="tel" placeholder="Phone number (digits only)" pattern="[0-9]+" inputmode="numeric" title="Enter digits only" />
-                    <textarea name="message" placeholder="Brief summary of your project" required></textarea>
-                    <div style="display:flex;gap:8px">
-                        <button class="btn contact-btn" type="submit">Send the Details</button>
-                    </div>
-                </form>
-
-                <aside class="hero-card" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-                    <div style="font-weight:700">Office</div>
-                    <div style="color:var(--muted);font-size:13px">Technostic Group — Remote first</div>
-                    <div style="margin-top:8px">
-                        <div style="font-weight:700">Email</div>
-                        <div style="color:var(--muted);font-size:13px">hacknosticgroup@gmail.com</div>
-                    </div>
-                    <div style="margin-top:8px">
-                        <div style="font-weight:700">Working hours</div>
-                        <div style="color:var(--muted);font-size:13px">Mon — Fri, 9:00 — 18:00 (UTC)</div>
-                    </div>
-                </aside>
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div data-reveal>
+              <div class="section-kicker">Protection layers</div>
+              <h2>Services designed to reduce exposure and shorten response time.</h2>
             </div>
-        </section>
-
-        <footer>
-            <div>© <strong>Technostic Group</strong> — Built with care</div>
-            <div style="color:var(--muted)">
-                <button class="btn ghost" type="button" onclick="location.href='Privacy.html'">Privacy</button>
-                &nbsp;·&nbsp;
-                <a href="#" style="color:var(--muted);text-decoration:none">Terms</a>
+            <a class="btn btn-ghost" href="services.html">View all services</a>
+          </div>
+          <div class="grid-4">
+            <article class="feature-card" data-tilt data-reveal>
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 12a8 8 0 0 1 16 0"/><path d="M12 4v8l4 4"/></svg>
+              </div>
+              <h3>Risk Audit</h3>
+              <p>Map exposure, verify controls, and prioritize the fixes that matter most first.</p>
+            </article>
+            <article class="feature-card" data-tilt data-reveal>
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 6h16v12H4z"/><path d="M8 10h8"/><path d="M8 14h5"/></svg>
+              </div>
+              <h3>Managed SOC</h3>
+              <p>Watch for suspicious behavior around the clock with clear escalation paths.</p>
+            </article>
+            <article class="feature-card" data-tilt data-reveal>
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M12 2l7 4v6c0 5-3.5 8.6-7 10-3.5-1.4-7-5-7-10V6z"/><path d="M9.5 12l1.8 1.8L15 10.2"/></svg>
+              </div>
+              <h3>Pen Test</h3>
+              <p>Test applications and infrastructure with attacker-minded validation.</p>
+            </article>
+            <article class="feature-card" data-tilt data-reveal>
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M12 2v6"/><path d="M12 16v6"/><path d="M4.9 4.9l4.2 4.2"/><path d="M14.9 14.9l4.2 4.2"/><path d="M2 12h6"/><path d="M16 12h6"/></svg>
+              </div>
+              <h3>Incident Response</h3>
+              <p>Move quickly from containment to recovery with structured support.</p>
+            </article>
+          </div>
+          <div class="section-banner" data-reveal>
+            <div class="split">
+              <div>
+                <div class="section-kicker">Why Technostics</div>
+                <h2>Security operations with a product-minded delivery style.</h2>
+              </div>
+              <p>We blend technical depth with clean reporting so leadership knows what is happening, what changed, and what to do next. The result is a security partner that feels practical instead of performative.</p>
             </div>
-        </footer>
+          </div>
+        </div>
+      </section>
+    </main>
 
-    </div>
-        <script>
-            // Theme toggle: persist selection and apply on load
-            (function(){
-                const htmlEl = document.documentElement;
-                const toggle = document.getElementById('theme-toggle');
-                const saved = localStorage.getItem('theme');
-                const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                const initial = saved || (prefersLight ? 'light' : 'dark');
-                htmlEl.setAttribute('data-theme', initial);
-                    const sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4" fill="currentColor"/><g stroke="currentColor" stroke-linecap="round"><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/></g></svg>';
-                    const moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor"/></svg>';
-                    function setToggleIcon(mode){
-                        if(!toggle) return;
-                        if(mode === 'light'){
-                            toggle.innerHTML = sunIcon;
-                            toggle.setAttribute('aria-label','Light mode');
-                            toggle.title = 'Light mode';
-                        } else {
-                            toggle.innerHTML = moonIcon;
-                            toggle.setAttribute('aria-label','Dark mode');
-                            toggle.title = 'Dark mode';
-                        }
-                    }
-                    if(toggle){
-                        setToggleIcon(initial);
-                        toggle.addEventListener('click', function(){
-                            const current = htmlEl.getAttribute('data-theme') || 'dark';
-                            const next = current === 'light' ? 'dark' : 'light';
-                            htmlEl.setAttribute('data-theme', next);
-                            localStorage.setItem('theme', next);
-                            setToggleIcon(next);
-                        });
-                    }
-            })();
-
-            // Formspree AJAX submit handler
-            (function(){
-                const form = document.querySelector('.contact-form');
-                if(!form) return;
-                form.addEventListener('submit', async function(e){
-                    e.preventDefault();
-                    const action = form.getAttribute('action');
-                    const data = new FormData(form);
-                    try{
-                        const res = await fetch(action, {method:'POST', body:data, headers:{'Accept':'application/json'}});
-                        if(res.ok){
-                            alert('Thanks — your message has been sent.');
-                            form.reset();
-                        } else {
-                            const json = await res.json();
-                            alert((json && json.error) || 'Submission failed. Please try again.');
-                        }
-                    }catch(err){
-                        alert('Submission failed. Please try again later.');
-                    }
-                });
-            })();
-        </script>
-</body>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>Technostics Group</div>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+        <div>Cyber defense, monitoring, and response built for modern teams.</div>
+      </div>
+    </footer>
+  </body>
 </html>
+

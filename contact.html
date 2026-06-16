@@ -1,0 +1,89 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Technostics Group</title>
+    <meta name="description" content="Contact Technostics Group to discuss cybersecurity audits, managed SOC, penetration testing, or incident response." />
+    <link rel="icon" href="assets/favicon.ico" />\r\n    <link rel="stylesheet" href="styles.css" />
+    <script defer src="main.js"></script>
+  </head>
+  <body data-page="contact">
+    <div class="cursor" aria-hidden="true"></div>
+    <video class="bg-video" autoplay muted loop playsinline aria-hidden="true">
+      <source src="assets/Video%20Project%204.mp4" type="video/mp4" />
+    </video>
+    <div class="bg-overlay" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Technostics Group</span>
+        </a>
+        <nav class="nav-links" data-nav-links>
+          <a href="services.html">Services</a>
+          <a href="team.html">Team</a>
+          <a href="cart.html">Cart <span class="cart-badge" data-cart-count style="display:none">0</span></a>
+          <a href="contact.html" aria-current="page">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-secondary" href="checkout.html">Checkout</a>
+          <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">â˜°</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero hero">
+        <div class="container" data-reveal>
+          <div class="eyebrow">Start the conversation</div>
+          <h1>Tell us what you need protected, and weâ€™ll help shape the response.</h1>
+          <p>Use the form for discovery calls, quote requests, or urgent incident support. Weâ€™ll route your message to the right specialist.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container contact-grid">
+          <article class="contact-card" data-reveal>
+            <h3>Send a brief</h3>
+            <form class="contact-form" data-contact-form action="https://formspree.io/f/meenywqe" method="POST">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required />
+              </div>
+              <div class="field">
+                <label for="email">Work email</label>
+                <input id="email" name="email" type="email" placeholder="name@company.com" required />
+              </div>
+              <div class="field">
+                <label for="message">What do you need help with?</label>
+                <textarea id="message" name="message" placeholder="Share your security goals, current pain points, or incident details." required></textarea>
+              </div>
+              <button class="btn btn-primary" type="submit">Request contact</button>
+            </form>
+          </article>
+          <article class="contact-card" data-reveal>
+            <h3>What to include</h3>
+            <ul class="contact-list">
+              <li>Your environment type, such as SaaS, internal apps, or hybrid infrastructure.</li>
+              <li>The service you are considering or the issue you are facing.</li>
+              <li>Any deadline, compliance pressure, or incident urgency.</li>
+            </ul>
+            <div class="section-banner" style="margin-top:20px">
+              <div class="section-kicker">Response style</div>
+              <p>We keep replies direct and useful. No templates, no long delays, just enough detail to help you make a decision quickly.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>Technostics Group</div>
+        <div>Contact us for audits, defense, and incident support.</div>
+      </div>
+    </footer>
+  </body>
+</html>
+
