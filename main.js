@@ -4,37 +4,37 @@ const catalog = {
   personalStarter: {
     id: "personalStarter",
     name: "Personal Starter",
-    price: 149,
+    price: 1999,
     description: "Core personal security checks covering router, passwords, Wi-Fi, and guest network setup.",
   },
   personalStandard: {
     id: "personalStandard",
     name: "Personal Standard",
-    price: 249,
+    price: 3749,
     description: "Expanded personal coverage with device and IoT review plus a written security report.",
   },
   personalPremium: {
     id: "personalPremium",
     name: "Personal Premium",
-    price: 399,
+    price: 5599,
     description: "Full 13-service personal security treatment with follow-up support included.",
   },
   businessStandard: {
     id: "businessStandard",
     name: "Business Standard",
-    price: 399,
+    price: 12499,
     description: "Baseline business assessment covering network, ports, Wi-Fi, password risk, and internal vulnerability.",
   },
   businessProfessional: {
     id: "businessProfessional",
     name: "Business Professional",
-    price: 699,
+    price: 24999,
     description: "Expanded business protection with mapping, firewall review, and actionable reporting.",
   },
   businessRetainer: {
     id: "businessRetainer",
     name: "Business Monthly Retainer",
-    price: 999,
+    price: 37999,
     description: "Complete 13-service business support with ongoing audits, updates, intelligence, and consultation.",
   },
   customFull: {
@@ -240,7 +240,7 @@ function getCartCount() {
 }
 
 function formatMoney(amount) {
-  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount);
+  return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(amount);
 }
 
 function updateCartBadges() {
@@ -308,7 +308,7 @@ function renderCartItems() {
               <span class="chip">Qty ${item.quantity}</span>
             </div>
             <p>${item.description}</p>
-            <p><strong>${formatMoney(item.price)}</strong> per order</p>
+            <p><strong>${formatMoney(item.price)}</strong> ${item.id === "businessRetainer" ? "per month" : "per order"}</p>
           </div>
           <div style="text-align:right">
             <div class="quantity-controls" aria-label="Quantity controls for ${item.name}">
@@ -471,12 +471,30 @@ function bindCheckoutForm() {
       return;
     }
 
+    const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const tax = subtotal * 0.08;
+    const total = subtotal + tax;
+    const reference = `TX-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
     const cartSummary = cart
-      .map((item) => `${item.name} x ${item.quantity}`)
-      .join(", ");
+      .map((item) => `${item.name} x ${item.quantity} (${formatMoney(item.price)})`)
+      .join("; ");
+
+    const orderItemsField = form.querySelector("#order_items");
+    const orderSubtotalField = form.querySelector("#order_subtotal");
+    const orderTaxField = form.querySelector("#order_tax");
+    const orderTotalField = form.querySelector("#order_total");
+    const orderReferenceField = form.querySelector("#order_reference");
+
+    if (orderItemsField) orderItemsField.value = cartSummary;
+    if (orderSubtotalField) orderSubtotalField.value = formatMoney(subtotal);
+    if (orderTaxField) orderTaxField.value = formatMoney(tax);
+    if (orderTotalField) orderTotalField.value = formatMoney(total);
+    if (orderReferenceField) orderReferenceField.value = reference;
+
     const payload = new FormData(form);
-    payload.append("cart", cartSummary);
-    payload.append("total", formatMoney(cart.reduce((sum, item) => sum + item.price * item.quantity, 0)));
+    if (!orderItemsField) payload.append("cart", cartSummary);
+    if (!orderTotalField) payload.append("total", formatMoney(total));
+    payload.append("order_reference", reference);
 
     status.textContent = "Submitting your order...";
 
@@ -491,7 +509,6 @@ function bindCheckoutForm() {
         throw new Error("Checkout submission failed");
       }
 
-      const reference = `TX-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
       writeCart([]);
       renderCartItems();
       renderCheckoutSummary();
