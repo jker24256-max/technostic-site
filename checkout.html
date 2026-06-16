@@ -1,11 +1,12 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout | Technostics Group</title>
     <meta name="description" content="Complete your Technostics Group cybersecurity order." />
-    <link rel="icon" href="assets/favicon.ico" />\r\n    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
     <script defer src="main.js"></script>
   </head>
   <body data-page="checkout">
@@ -47,6 +48,24 @@
           <article class="checkout-card" data-reveal>
             <h3>Checkout details</h3>
             <form class="contact-form" data-checkout-form action="https://formspree.io/f/mbdegblw" method="POST">
+              <input type="hidden" id="order_items" name="order_items" />
+              <input type="hidden" id="order_subtotal" name="order_subtotal" />
+              <input type="hidden" id="order_tax" name="order_tax" />
+              <input type="hidden" id="order_total" name="order_total" />
+              <input type="hidden" id="order_reference" name="order_reference" />
+
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your full name" required />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@company.com" required />
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" placeholder="+1 (555) 123-4567" />
+              </div>
               <div class="field">
                 <label for="company">Company</label>
                 <input id="company" name="company" type="text" placeholder="Technostics customer" required />
@@ -72,4 +91,6 @@
     </footer>
   </body>
 </html>
+
+
 
