@@ -1,15 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C899ZDG3Q3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-C899ZDG3Q3');
-</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Custom Package | Technostics Group</title>
@@ -17,7 +8,16 @@
     <link rel="icon" href="assets/favicon.ico" />
     <link rel="stylesheet" href="styles.css" />
     <script defer src="main.js"></script>
-  </head>
+  <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C899ZDG3Q3"></script>
+    <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+
+       gtag('config', 'G-C899ZDG3Q3');
+   </script>
+</head>
   <body data-page="custom-package">
     <div class="cursor" aria-hidden="true"></div>
     <video class="bg-video" autoplay muted loop playsinline aria-hidden="true">
@@ -33,9 +33,7 @@
         </a>
         <nav class="nav-links" data-nav-links>
           <a href="services.html">Services</a>
-          <a href="team.html">Team</a>
-          <a href="cart.html">Cart <span class="cart-badge" data-cart-count style="display:none">0</span></a>
-          <a href="contact.html">Contact</a>
+          <a href="team.html">Team</a><a href="contact.html">Contact</a>
         </nav>
         <div class="nav-actions">
           <a class="btn btn-secondary" href="checkout.html">Checkout</a>
@@ -57,8 +55,8 @@
               </svg>
             </div>
             <div class="eyebrow">Custom package</div>
-            <h1>Select exactly the services you want.</h1>
-            <p>Every service from the custom list can be checked individually and added to the cart as a separate line item.</p>
+            <h1>Build a scope around exactly what your environment needs.</h1>
+            <p>Select the services you want, add them to the cart, and create a security plan that matches your priorities instead of a fixed package.</p>
             <div class="profile-meta">
               <span class="chip">Selectable</span>
               <span class="chip">Full list</span>
@@ -73,94 +71,43 @@
             <div>
               <div class="section-kicker">Service checklist</div>
               <h2>Check the services you want, then add them to the cart.</h2>
-              <p>Only the checked items will be sent to the cart. You can mix and match as needed.</p>
+              <p>Only the checked items will be sent to the cart, so you can mix and match services as needed.</p>
             </div>
 
-            <form class="service-selection" data-service-selection>
+            <div class="service-selection">
               <div class="service-selection-grid">
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customRouterSecurityChecking" /> <span>Router Security Checking</span></span>
-                  <span class="service-price">₹1,099</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customPasswordStrengthReview" /> <span>Password Strength Review</span></span>
-                  <span class="service-price">₹699</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customWiFiEncryption" /> <span>Wi-Fi Encryption Verification</span></span>
-                  <span class="service-price">₹1,099</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customGuestNetworkSetup" /> <span>Guest Network Setup</span></span>
-                  <span class="service-price">₹799</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customDeviceScanning" /> <span>Device Scanning</span></span>
-                  <span class="service-price">₹899</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customIoTDeviceRiskCheck" /> <span>IoT Device Risk Check</span></span>
-                  <span class="service-price">₹1,299</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customRouterHardening" /> <span>Router Hardening</span></span>
-                  <span class="service-price">₹1,399</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customDnsPrivacySetup" /> <span>DNS/Privacy Setup</span></span>
-                  <span class="service-price">₹999</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customAdvancedFirewallConfiguration" /> <span>Advanced Firewall Configuration</span></span>
-                  <span class="service-price">₹1,999</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customVpnSetupConfiguration" /> <span>VPN Setup &amp; Configuration</span></span>
-                  <span class="service-price">₹1,499</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customOpenPortScanning" /> <span>Open Port Scanning</span></span>
+                <div class="service-option">
+                  <span class="service-option-main"><span>Router Hardening</span></span>
+                  <span class="service-price">₹4,999</span>
+                </div>
+                <div class="service-option">
+                  <span class="service-option-main"><span>IoT Device Risk Check</span></span>
                   <span class="service-price">₹2,999</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customWeakPasswordIdentification" /> <span>Weak Password Identification</span></span>
-                  <span class="service-price">₹2,799</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customNetworkMapping" /> <span>Network Mapping</span></span>
+                </div>
+                <div class="service-option">
+                  <span class="service-option-main"><span>VPN Setup</span></span>
                   <span class="service-price">₹4,999</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customExposureMonitoringThreatIntelligence" /> <span>Exposure Monitoring &amp; Threat Intelligence</span></span>
-                  <span class="service-price">₹1,599</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customBasicNetworkAssessment" /> <span>Basic Network Assessment</span></span>
-                  <span class="service-price">₹3,999</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customWiFiSecurityReview" /> <span>Wi-Fi Security Review</span></span>
-                  <span class="service-price">₹2,499</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customInternalVulnerabilityAssessment" /> <span>Internal Vulnerability Reassessment</span></span>
-                  <span class="service-price">₹7,999</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customFirewallConfigurationReview" /> <span>Firewall Configuration Review</span></span>
+                </div>
+                <div class="service-option">
+                  <span class="service-option-main"><span>Password Audit</span></span>
+                  <span class="service-price">₹2,999</span>
+                </div>
+                <div class="service-option">
+                  <span class="service-option-main"><span>Network Mapping</span></span>
+                  <span class="service-price">₹4,999</span>
+                </div>
+                <div class="service-option">
+                  <span class="service-option-main"><span>Firewall Configuration Review</span></span>
                   <span class="service-price">₹4,499</span>
-                </label>
-                <label class="service-option">
-                  <span class="service-option-main"><input type="checkbox" data-service-id="customVulnerabilityPatchingUpdates" /> <span>Vulnerability Patching &amp; Updates</span></span>
-                  <span class="service-price">₹4,999</span>
-                </label>
+                </div>
               </div>
-              <p class="selection-status" data-service-selection-status></p>
-              <div class="profile-actions">
-                <button class="btn btn-primary" type="button" data-add-selected-services>Add to cart</button>
-                <a class="btn btn-secondary" href="services.html">Back to services</a>
+              <div class="profile-actions" style="gap:8px; margin-top:12px;">
+                <a class="btn btn-secondary btn-sm" href="services.html">Back to services</a>
               </div>
-            </form>
+              <div class="profile-actions" style="gap:8px; margin-top:12px;">
+                <a class="btn btn-secondary btn-sm" href="contact.html">Request a Discovery Call</a>
+              </div>
+            </div>
           </aside>
         </div>
       </section>
