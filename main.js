@@ -67,109 +67,109 @@ Object.assign(catalog, {
   customRouterSecurityChecking: {
     id: "customRouterSecurityChecking",
     name: "Router Security Checking",
-    price: 499,
+    price: 1099,
     description: "Review of router exposure and baseline configuration.",
   },
   customPasswordStrengthReview: {
     id: "customPasswordStrengthReview",
     name: "Password Strength Review",
-    price: 299,
+    price: 699,
     description: "Assessment of password hygiene and account resilience.",
   },
   customWiFiEncryption: {
     id: "customWiFiEncryption",
-    name: "Wi-Fi Encryption",
-    price: 299,
+    name: "Wi-Fi Encryption Verification",
+    price: 1099,
     description: "Validation of wireless encryption and access security.",
   },
   customGuestNetworkSetup: {
     id: "customGuestNetworkSetup",
     name: "Guest Network Setup",
-    price: 299,
+    price: 799,
     description: "Separate guest access for safer segmentation.",
   },
   customDeviceScanning: {
     id: "customDeviceScanning",
     name: "Device Scanning",
-    price: 399,
+    price: 899,
     description: "Checks for obvious device-level risks and weaknesses.",
   },
   customIoTDeviceRiskCheck: {
     id: "customIoTDeviceRiskCheck",
     name: "IoT Device Risk Check",
-    price: 499,
+    price: 1299,
     description: "Review of connected devices that often go unmonitored.",
   },
   customRouterHardening: {
     id: "customRouterHardening",
     name: "Router Hardening",
-    price: 699,
+    price: 1399,
     description: "Stronger baseline controls for the gateway layer.",
   },
   customDnsPrivacySetup: {
     id: "customDnsPrivacySetup",
     name: "DNS/Privacy Setup",
-    price: 399,
+    price: 999,
     description: "Privacy-focused configuration improvements.",
   },
   customWrittenSecurityReport: {
     id: "customWrittenSecurityReport",
     name: "Written Security Report",
-    price: 599,
+    price: 1599,
     description: "Clear findings and next steps in a usable report.",
   },
   customRemoteWalkthroughSupport: {
     id: "customRemoteWalkthroughSupport",
     name: "Remote Walkthrough & Support",
-    price: 799,
+    price: 1999,
     description: "Guided help to apply the recommended changes.",
   },
   customAdvancedFirewallConfiguration: {
     id: "customAdvancedFirewallConfiguration",
     name: "Advanced Firewall Configuration",
-    price: 699,
+    price: 1999,
     description: "More advanced controls for traffic filtering and defense.",
   },
   customVpnSetupConfiguration: {
     id: "customVpnSetupConfiguration",
     name: "VPN Setup & Configuration",
-    price: 699,
+    price: 1499,
     description: "Secure remote access setup for safer connectivity.",
   },
   customFollowUpSupport30Days: {
     id: "customFollowUpSupport30Days",
     name: "Follow-Up Support (30 days)",
-    price: 799,
+    price: 1699,
     description: "Post-delivery support to keep the implementation on track.",
   },
   customOpenPortScanning: {
     id: "customOpenPortScanning",
     name: "Open Port Scanning",
-    price: 999,
+    price: 2999,
     description: "Discovery of externally visible services and exposure.",
   },
   customWeakPasswordIdentification: {
     id: "customWeakPasswordIdentification",
     name: "Weak Password Identification",
-    price: 599,
+    price: 2799,
     description: "Checks for weak, reused, or guessable credentials.",
   },
   customNetworkMapping: {
     id: "customNetworkMapping",
     name: "Network Mapping",
-    price: 799,
+    price: 4999,
     description: "Identification of key systems and connectivity paths.",
   },
   customSecurityRecommendationsBestPractices: {
     id: "customSecurityRecommendationsBestPractices",
     name: "Security Recommendations & Best Practices",
-    price: 699,
+    price: 3499,
     description: "Practical advice for improving your day-to-day security posture.",
   },
   customPeriodicSecurityAuditsMonthly: {
     id: "customPeriodicSecurityAuditsMonthly",
     name: "Periodic Security Audits Monthly",
-    price: 2499,
+    price: 7999,
     description: "Recurring audit coverage for continuous oversight.",
   },
   customExposureMonitoringThreatIntelligence: {
@@ -181,37 +181,37 @@ Object.assign(catalog, {
   customBasicNetworkAssessment: {
     id: "customBasicNetworkAssessment",
     name: "Basic Network Assessment",
-    price: 749,
+    price: 3999,
     description: "Baseline assessment of network structure and weaknesses.",
   },
   customWiFiSecurityReview: {
     id: "customWiFiSecurityReview",
     name: "Wi-Fi Security Review",
-    price: 799,
+    price: 2499,
     description: "Assessment of Wi-Fi protections and configuration.",
   },
   customInternalVulnerabilityAssessment: {
     id: "customInternalVulnerabilityAssessment",
-    name: "Internal Vulnerability Assessment",
-    price: 2499,
+    name: "Internal Vulnerability Reassessment",
+    price: 7999,
     description: "Inspection of internal weaknesses and likely attack paths.",
   },
   customFirewallConfigurationReview: {
     id: "customFirewallConfigurationReview",
     name: "Firewall Configuration Review",
-    price: 1199,
+    price: 4499,
     description: "Review of firewall policy structure and rule quality.",
   },
   customDetailedSecurityReportWithActionableInsights: {
     id: "customDetailedSecurityReportWithActionableInsights",
     name: "Detailed Security Report with Actionable Insights",
-    price: 499,
+    price: 5499,
     description: "A detailed report with practical recommendations.",
   },
   customVulnerabilityPatchingUpdates: {
     id: "customVulnerabilityPatchingUpdates",
     name: "Vulnerability Patching & Updates",
-    price: 1299,
+    price: 4999,
     description: "Support for applying key fixes and updates.",
   },
   customOngoingSecurityConsultationSupport: {
@@ -562,12 +562,19 @@ function initCursor() {
   if (!cursor) return;
 
   window.addEventListener("pointermove", (event) => {
-    cursor.style.transform = `translate3d(${event.clientX - 9}px, ${event.clientY - 9}px, 0)`;
+    const x = event.clientX - 9;
+    const y = event.clientY - 9;
+    cursor.style.setProperty("--cursor-x", `${x}px`);
+    cursor.style.setProperty("--cursor-y", `${y}px`);
   });
 
   document.querySelectorAll("a, button, input, textarea, .feature-card, .team-card, .offer-card").forEach((el) => {
     el.addEventListener("pointerenter", () => cursor.classList.add("is-hover"));
     el.addEventListener("pointerleave", () => cursor.classList.remove("is-hover"));
+    el.addEventListener("pointerdown", () => {
+      cursor.classList.add("is-click");
+      setTimeout(() => cursor.classList.remove("is-click"), 200);
+    });
   });
 }
 
